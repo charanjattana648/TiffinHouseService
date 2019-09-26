@@ -334,7 +334,60 @@ section.righttext p{
 			  background-color: black;
 			  opacity: 0.2;
 			}
+/**aboutus***/
+.about_us{
+	
+	width: 75%;
+	background-color: #e4dce1;
+	height: auto;
+	margin: 10px;
+	margin-left: 150px;
+    text-align: justify;
+	padding: 20px;		
+				
+		}
+.chef_msg{
 			
+	height: 350px;
+	width: 500px;
+	display: inline-block;
+		}
+.chef_msg img{
+	position: absolute;
+			height: 350px;
+			width: 500px;
+			z-index: -1;
+			
+		}
+.message{
+	padding-top: 20px;
+	padding-left: 200px;
+	width: 80%;
+	height: auto;
+	word-wrap: break-word;
+	font-style: italic;
+	
+}
+.thali_img {
+	
+display: inline-block;
+height: 350px;
+width: 350px;
+margin-left:200px;
+margin-top: 20px;
+
+
+	
+}
+.thali_img img{
+	
+
+height: 300px;
+width: 300px;
+border-radius: 50%; 
+
+	
+}
 			
 /**Contact US css
 ###############################**/
@@ -352,6 +405,7 @@ footer{
 
 .footer_top{
 	text-align: center;
+	margin-top: 15px;
 }
 .footer_top .left p a{
 	text-decoration: none;
