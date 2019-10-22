@@ -1,5 +1,7 @@
 <?php
 include ("./views/header.php");
+include("./views/signUp.php");
+include("./views/login.php");
 ?>
 	
 	<div class="menu">

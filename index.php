@@ -2,6 +2,12 @@
 include ("./views/header.php");
 include("./views/signUp.php");
 include("./views/login.php");
+require_once ("./inc/Utility/auth.php");
+require_once  ("inc/Entities/User.class.php");
+
+require_once ("./inc/Utility/PDOAgent.class.php");
+//require_once ("./inc/config.inc.php");
+require_once("inc/config.inc.php");
 ?>
 	<h2 id="tdeals_head">Today's Deals</h2>
 	<!-- Slideshow container -->
@@ -91,38 +97,7 @@ include("./views/login.php");
 </div>
 
 
- <?php
-// console.log("hello");
  
-//include ("./model/dbConn.php");
-include ("./model/auth.php");
-  //require "./model/dbConn.php";
-  if(isset($_POST['submit']))
-  {
-  	extract($_REQUEST);  
-  	if(!empty($_POST['uname_login']) && !empty($_POST['psw_login']))
-  	{
-		echo "login with ".$_POST['uname_login'];
-		$users=signIn_user($_POST['uname_login'],$_POST['psw_login']);
-		foreach($users as $user)
-		{
-			echo " ".$user["userName"];			
-		}
-	}
-	
-    if(!empty($_POST['email_signUp']) && !empty($_POST['psw_signUp']) && !empty($_POST['psw_repeat_signUp']))
-  	{
-  		echo "entering................";
-		echo $isMatch=match($_POST['psw_signUp'],$_POST['psw_repeat_signUp']);
-		echo "signUp with ".$_POST['email_signUp'];
-			add_user($_POST['email_signUp'],$_POST['psw_signUp']);
-		if($isMatch==0)
-		{
-		
-		}
-	}
-  }
-  ?>
 
 <!--	<section class="body">
 	<div class="login_div">
