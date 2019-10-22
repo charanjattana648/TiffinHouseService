@@ -28,11 +28,13 @@ btn.onclick=function(){
 <!-- The Modal (contains the Sign Up form) -->
 <div id="signUp" class="modal">
   <span onclick="document.getElementById('signUp').style.display='none'" class="close" title="Close Modal"></span>
-  <form class="modal-content" method="post" action="">
+  <form class="modal-content" method="post" action="index.php">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
+      <label for="fName"><b>First Name</b></label>
+      <input type="text" placeholder="Enter firstName" name="fName" required>
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email_signUp" required>
 
@@ -41,7 +43,7 @@ btn.onclick=function(){
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw_repeat_signUp" required>
-      <button type="submit" id="submit"  name="submit" class="signup">Sign Up</button>
+      <button type="submit" id="submit"  name="submitSU" class="signup">Sign Up</button>
 
       
        <div class="container" style="background-color:#f1f1f1">
@@ -52,3 +54,34 @@ btn.onclick=function(){
     </div>
   </form>
 </div>
+<?php
+ 
+//include ("./model/dbConn.php");
+//include ("./model/auth.php");
+  //require "./model/dbConn.php";
+  // include ("./inc/Utility/auth.php");
+  
+require_once  ("./inc/Entities/User.class.php");
+require_once  ("./inc/Utility/auth.php");
+  if(isset($_POST['submitSU']))
+  {
+	
+    if(!empty($_POST['email_signUp']) && !empty($_POST['psw_signUp']) && !empty($_POST['psw_repeat_signUp']))
+  	{
+      echo "entering................";
+      $auth=new Auth("User"); 
+		echo $isMatch=auth::matchPass($_POST['psw_signUp'],$_POST['psw_repeat_signUp']);
+    echo "signUp with ".$_POST['email_signUp'];
+
+  
+		if($isMatch==0)
+		{
+		$user=new User();
+    $user->setData($_POST['fName'],"Jattana",$_POST['email_signUp'],$_POST['psw_signUp'],"784","134st 9538","V3v 5s5");
+    //  initialize     
+    $auth::initialize("USer");
+		$auth::add_user($user,"User");
+		}
+	}
+}
+  ?>

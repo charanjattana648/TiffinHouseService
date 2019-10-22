@@ -24,7 +24,7 @@ btn.onclick=function(){
  <!-- <span onclick="document.getElementById('login_div').style.display='none'" class="close" title="Close Modal">&times;</span>-->
 
   <!-- Modal Content -->
-  <form class="modal-content animate" action="" method="post">
+  <form class="modal-content animate" action="index.php" method="post">
     
 
     <div class="container">
@@ -53,3 +53,29 @@ btn.onclick=function(){
   </form>
   
 </div>
+<?php
+// console.log("hello");
+ 
+//include ("./model/dbConn.php");
+
+
+  //require "./model/dbConn.php";
+  if(isset($_POST['submit']))
+  {
+  	extract($_REQUEST);  
+  	if(!empty($_POST['uname_login']) && !empty($_POST['psw_login']))
+  	{
+    //echo "login with ".$_POST['uname_login'];
+    $auth=new Auth();
+    $auth::initialize("User");
+    $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"user");
+    echo $users->getUserEmail();
+		foreach($users as $user)
+		{
+			echo "Hello ".$user["userEmail"];			
+		}
+	}
+	
+  
+  }
+  ?>

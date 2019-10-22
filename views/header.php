@@ -6,7 +6,7 @@
 		<title></title>
 		<link rel="stylesheet" href="css/style.css"/>		
 		<link rel="stylesheet" href="css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="../css/index.css"/>
+		<link rel="stylesheet" href="css/index.css"/>
 		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 	</head>
 	<body>
