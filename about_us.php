@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 include ("./views/header.php");
+include("./views/signUp.php");
+include("./views/login.php");
 ?>
 	<!--div for slider-->
 	<div>
