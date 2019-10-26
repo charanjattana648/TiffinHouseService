@@ -23,7 +23,9 @@ include("./views/login.php");
     <p>$15</p></div>
         <div class="hover_menu_img"> <a href="##"><img src="images/menu_chapati.png"/></a>
           <p>Chole Bature </p>
-    <p>$15</p></div></td>
+    <p>$15</p></div> 
+  
+  </td>
     <!--<td>Chick Peas + Aloo Shimla Mirch+2 Naan</td>-->
   </tr>
   <tr>
