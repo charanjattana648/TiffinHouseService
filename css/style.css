@@ -468,3 +468,13 @@ button#btn_subscribe {
 .footer_copyRight span > a:hover{	
 	color: black;
 }
+
+
+div#dealerMenu{
+	/* text-align: center; */
+	width: 60%;
+}
+form#dForm{
+	/* text-align: center; */
+	width: 60%;
+}

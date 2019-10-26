@@ -576,4 +576,22 @@ footer{
 	height: 200px;
 }*/
 
+span#login_page , span#signUp_page {
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: 600;
+}
+span#login_page:hover, span#signUp_page:hover{
+	color: black;
+}
+
+div#dealerMenu{
+	/* text-align: center; */
+	width: 50%;
+}
+form#dForm{
+	/* text-align: center; */
+	width: 80%;
+}
+
 
