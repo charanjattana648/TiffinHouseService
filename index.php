@@ -1,4 +1,6 @@
 <?php
+
+require_once("inc/config.inc.php");
 include ("./views/header.php");
 include("./views/signUp.php");
 include("./views/login.php");
@@ -7,7 +9,6 @@ require_once  ("inc/Entities/User.class.php");
 
 require_once ("./inc/Utility/PDOAgent.class.php");
 //require_once ("./inc/config.inc.php");
-require_once("inc/config.inc.php");
 ?>
 	<h2 id="tdeals_head">Today's Deals</h2>
 	<!-- Slideshow container -->
