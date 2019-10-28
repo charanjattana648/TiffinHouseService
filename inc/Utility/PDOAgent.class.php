@@ -58,8 +58,12 @@ public function bind(string $param, string $value, $type=null)
             case is_null($value):
             $type=PDO::PARAM_NULL;
             break;
-            default:            
+            case is_string($value):     
             $type=PDO::PARAM_STR;
+            break;         
+            default:  
+            $type=PDO::PARAM_LOB; 
+            break;
         }
     }
     $this->stmt->bindValue($param,$value,$type);    
