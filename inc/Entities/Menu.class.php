@@ -1,13 +1,21 @@
 <?php
 class Menu{
-    private $itemName=array();
-    private $itemPrice=array();
-    private $itemImage=array();
-    private $itemDetail=array();
-    private $ingredient=array();
+    
+    private $itemId;
+    private $itemName;
+    private $itemPrice;
+    private $itemImage;
+    private $itemDetail;
+    private $ingredient;
     private $day;
+    private $dayId;
 
-    public function __construct(array $itemName,array $itemPrice,array $itemImage,array $itemDetail,array $ingredient,string $day)
+    public function __construct(  )
+    {
+    }
+
+    public function saveMenu($itemName,$itemPrice,$itemImage,$itemDetail,
+    $ingredient,string $day,$dayId)
     {
         $this->itemName=$itemName;
         $this->itemPrice=$itemPrice;
@@ -15,31 +23,36 @@ class Menu{
         $this->itemDetail=$itemDetail;
         $this->ingredient=$ingredient;
         $this->day=$day;
+        $this->dayId=$dayId;
     }
 
-    public function getItemName():array
+    public function getItemName()
     {
         return $this->itemName;
     }
-    public function getItemPrice():array
+    public function getItemPrice() 
     {
         return $this->itemPrice;
     }
-    public function getItemImage():array
+    public function getItemImage() 
     {
         return $this->itemImage;
     }
-    public function getItemDetail():array
+    public function getItemDetail() 
     {
         return $this->itemDetail;
     }
-    public function getIngredient():array
+    public function getIngredient() 
     {
         return $this->ingredient;
     }
-    public function getDay():array
+    public function getDay() 
     {
         return $this->day;
+    }
+    public function getDayId() 
+    {
+        return $this->dayId;
     }
 
 }
