@@ -25,7 +25,10 @@ class Menu{
         $this->day=$day;
         $this->dayId=$dayId;
     }
-
+    public function getItemId()
+    {
+        return $this->itemId;
+    }
     public function getItemName()
     {
         return $this->itemName;

@@ -1,5 +1,7 @@
 <?php
 class Menu1{
+    
+    private $itemId;
     private $itemName;
     private $itemPrice;
     private $itemImage;
