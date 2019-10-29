@@ -24,14 +24,11 @@ public static function add_user(User $new_user,string $type)
 		self::$db->bind(':user_address',$new_user->getAddress());
 		self::$db->bind(':user_postalCode',$new_user->getPostalCode());
 		self::$db->execute();
-		//$insert_user->closeCursor();
 		$userId=self::$db->lastInsertedId();
 		print "Inserted user $userId successfully!";
 		return($userId);
 	}catch(PDOException $e)
 	{
-		
-		echo "error..............";
 		echo $e->getMessage();
 	}	
 }
@@ -43,31 +40,17 @@ public static function matchPass($pass,$pass_repeat)
 
 public static function signIn_user($userEmail,$pass,$type) 
 {	
-
-//echo $userEmail." in auth with psw as : ".$pass;
-	
 	$get_user_query="SELECT * FROM TiffinHouseDb.$type WHERE userEmail=:userEmail and password=:psw";
 
-	try{		
-	//	$u=new User();
-		if($type=="Dealer")
-		{
-			$u=new Dealer();
-		}else if($type=="Admin")
-		{
-
-		}
+	try{
 		self::$db->query($get_user_query);		
-		//$get_user=$dbConn->prepare($get_user_query);
 		self::$db->bind(":userEmail",$userEmail);
 		self::$db->bind(":psw",$pass);
 		self::$db->execute();
 		$user_data=self::$db->singleResult();
-		//echo $user_data->
 		return($user_data);
 	}catch(PDOException $e)
 	{
-		echo "error..............";
 		echo $e->getMessage();
 	}	
 }
