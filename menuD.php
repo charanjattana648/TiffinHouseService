@@ -1,6 +1,4 @@
-
-        <?php 
-        
+<?php         
 require_once("inc/config.inc.php");
 include ("./views/header.php");
 include("./views/signUp.php");
@@ -17,13 +15,13 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 <form id="dForm" method="Post" action="menuD.php" enctype="multipart/form-data">
 <select name="day" id="day">
     <option value="">Select Day</option>
-    <option value="1">Monday</option>
-    <option value="2">Tuesday</option>
-    <option value="3">Wednesday</option>
-    <option value="4">Thrusday</option>
-    <option value="5">Friday</option>
-    <option value="6">Saturday</option>
-    <option value="7">Sunday</option>
+    <option value="Monday:1">Monday</option>
+    <option value="Tuesday:2">Tuesday</option>
+    <option value="Wednesday:3">Wednesday</option>
+    <option value="Thrusday:4">Thrusday</option>
+    <option value="Friday:5">Friday</option>
+    <option value="Saturday:6">Saturday</option>
+    <option value="Sunday:7">Sunday</option>
 </select><br><br>
 <label for="itemName">ItemName</label>
 	<input type="text" name="itemName" id="itemName" placeholder="enter itemName"/><br>
@@ -42,9 +40,9 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	
 	<label for="ingredient">ingredient</label>
 	<input type="text" name="ingredient" id="ingredient" placeholder="enter ingredient"/>
-	<button type="submit" name="submitIngredient">Add Ingredient</button>
+	<button type="submit" name="submitIngredient" id="add_ingredient">Add Ingredient</button>
 	
-    <button type="submit" name="submitItem">Add Item</button>
+    <button type="submit" name="submitItem" id="add_item">Add Item</button>
     <button type="submit" name="getItem">Get Item</button>
 	
 <!--itemName	itemPrice	itemImage	itemDetail	ingredient	day-->
@@ -52,8 +50,9 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 </form>
 </div>
 </div>
+<article>
 <?php
-
+ echo "<script src='./inc/controller/menu_dealer.js'></script>";
 if(isset($_POST['getItem']))
 {
     echo "Items fetched are : <br>";
@@ -85,7 +84,7 @@ if(isset($_POST['getItem']))
         }
         if($m->getItemImage()!=null)
         {
-            echo '<a href="##"><img src="data:image/png;base64,'.base64_encode($m->getItemImage()).'"/> </a>';
+            echo '<a href="##"><img src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'"/> </a>';
         }
         echo'<div class="hover_menu_img">
         <p>'.$m->getItemName().' </p>
@@ -97,18 +96,19 @@ if(isset($_POST['getItem']))
 if(isset($_POST['submitItem']))
 {
     $menu=new Menu();
-    $binary = addslashes(file_get_contents($_FILES['itemImage']['tmp_name']));
+    $menu_day_array=explode(":",$_POST['day']);
+    $binary = file_get_contents($_FILES['itemImage']['tmp_name']);
     $menu->saveMenu($_POST['itemName'],$_POST['itemPrice'],$binary,
-    $_POST['itemDetail'],$_POST['ingredient'],"Monday",$_POST['day']);
+    $_POST['itemDetail'],$_POST['ingredient'],$menu_day_array[0],$menu_day_array[1]);
     
     $db=new database();
-
     $db::initialize("Menu");
     $mealName=$db::addMeal($menu);
     echo $mealName." is Name";
 }
 ?>
-
+</article>
+<p></p>
 
 <?php include ("./views/footer.php");?>
         
