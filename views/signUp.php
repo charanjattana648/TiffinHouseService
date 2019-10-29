@@ -33,16 +33,28 @@ btn.onclick=function(){
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
+      <select>
+      <option value"user">User</option>
+      <option value"dealer">Dealer</option>
+      </select>
       <label for="fName"><b>First Name</b></label>
-      <input type="text" placeholder="Enter firstName" name="fName" required>
+      <input type="text" placeholder="Enter firstName" name="fName"  required>
+      <label for="lName"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter lastName" name="lName" required>
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email_signUp" required>
+      <input type="email" placeholder="Enter Email" name="email_signUp" id="email_signUp" required>
+      <label for="pNumber"><b>Phone Number</b></label>
+      <input type="tel" placeholder="Enter Phone Number" name="pNumber" id="pNumber" required>
+      <label for="address"><b>Address</b></label>
+      <input type="text" placeholder="Enter Address" name="address" required>
+      <label for="pCode"><b>Postal Code</b></label>
+      <input type="text" placeholder="XXX XXX" name="pCode" id="pCode" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw_signUp" required>
+      <input type="password" placeholder="Enter Password" name="psw_signUp" id="psw_signUp" required>
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw_repeat_signUp" required>
+      <input type="password" placeholder="Repeat Password" name="psw_repeat_signUp" id="psw_repeat_signUp" required>
       <button type="submit" id="submit"  name="submitSU" class="signup">Sign Up</button>
 
       
