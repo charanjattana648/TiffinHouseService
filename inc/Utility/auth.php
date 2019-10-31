@@ -47,7 +47,7 @@ public static function signIn_user($userEmail,$pass,$type)
 		self::$db->bind(":userEmail",$userEmail);
 		self::$db->bind(":psw",$pass);
 		self::$db->execute();
-		$user_data=self::$db->singleResult();
+		$user_data=self::$db->singleResult();	
 		return($user_data);
 	}catch(PDOException $e)
 	{
