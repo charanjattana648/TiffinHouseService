@@ -13,7 +13,7 @@ class database{
 
     public static function getMeal(string $companyName="")
     {
-        $menu_query="SELECT * FROM TiffinHouseDb.Menu order by day";
+        $menu_query="SELECT * FROM TiffinHouseDb.Menu order by dayId";
         if(!empty($companyName))
         {
             $menu_query="SELECT * FROM TiffinHouseDb.Menu Where companyName=?";            
