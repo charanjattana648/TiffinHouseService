@@ -10,9 +10,12 @@ window.onclick = function(event) {
   }
 }
 var btn=document.getElementById('signUp_page');
+if(btn!=null)
+{	
 btn.onclick=function(){
 	console.log("Entering signUp")
 	document.getElementById('signUp').style.display='block';
+}
 }
 
 /*var btn=document.getElementById('signIn_page');
@@ -24,38 +27,51 @@ btn.onclick=function(){
 }*/
 
 
-		</script>
+    </script>
 <!-- The Modal (contains the Sign Up form) -->
 <div id="signUp" class="modal">
   <span onclick="document.getElementById('signUp').style.display='none'" class="close" title="Close Modal"></span>
+  
   <form class="modal-content" method="post" action="index.php">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
-      <select>
-      <option value"user">User</option>
-      <option value"dealer">Dealer</option>
+      <select id="user_type_signUp">
+      <option value="user">User</option>
+      <option value="dealer">Dealer</option>
       </select>
-      <label for="fName"><b>First Name</b></label>
+      <p id="signUp_row">
+      <label for="fName"><b>First Name</b></label><br>
       <input type="text" placeholder="Enter firstName" name="fName"  required>
-      <label for="lName"><b>Last Name</b></label>
+      </p>  <p id="signUp_row">
+      <label for="lName"><b>Last Name</b></label><br>
       <input type="text" placeholder="Enter lastName" name="lName" required>
+      </p>  <p id="signUp_row">
       <label for="email"><b>Email</b></label>
       <input type="email" placeholder="Enter Email" name="email_signUp" id="email_signUp" required>
+      </p>  <p id="signUp_row">
       <label for="pNumber"><b>Phone Number</b></label>
       <input type="tel" placeholder="Enter Phone Number" name="pNumber" id="pNumber" required>
+      </p>  <p id="signUp_row">
       <label for="address"><b>Address</b></label>
       <input type="text" placeholder="Enter Address" name="address" required>
+      </p>  <p id="signUp_row">
       <label for="pCode"><b>Postal Code</b></label>
       <input type="text" placeholder="XXX XXX" name="pCode" id="pCode" required>
+      </p>  <p id="signUp_row">
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw_signUp" id="psw_signUp" required>
+      </p>  <p id="signUp_row">
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw_repeat_signUp" id="psw_repeat_signUp" required>
-      <button type="submit" id="submit"  name="submitSU" class="signup">Sign Up</button>
+      </p><p  id="compName">
+      <label for="comp_Name"><b>Company Name</b></label>
+      <input type="text" placeholder="Enter your company name" name="company_name" id="comp_Name" required>
+      <p>
+      <button type="submit" id="submit_signUp"  name="submitSU" class="signup">Sign Up</button>
 
       
        <div class="container" style="background-color:#f1f1f1">
@@ -65,6 +81,8 @@ btn.onclick=function(){
       
     </div>
   </form>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="../inc/controller/signUp_validation.js"> </script>
 </div>
 <?php
  
