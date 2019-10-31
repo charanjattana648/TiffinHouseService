@@ -40,6 +40,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	
 	<label for="ingredient">ingredient</label>
 	<input type="text" name="ingredient" id="ingredient" placeholder="enter ingredient"/>
+    <input type="text" name="ingredient_data" id="ing_data"/>
 	<button type="submit" name="submitIngredient" id="add_ingredient">Add Ingredient</button>
 	
     <button type="submit" name="submitItem" id="add_item">Add Item</button>
@@ -99,7 +100,7 @@ if(isset($_POST['submitItem']))
     $menu_day_array=explode(":",$_POST['day']);
     $binary = file_get_contents($_FILES['itemImage']['tmp_name']);
     $menu->saveMenu($_POST['itemName'],$_POST['itemPrice'],$binary,
-    $_POST['itemDetail'],$_POST['ingredient'],$menu_day_array[0],$menu_day_array[1]);
+    $_POST['itemDetail'],$_POST['ingredient_data'],$menu_day_array[0],$menu_day_array[1]);
     
     $db=new database();
     $db::initialize("Menu");
