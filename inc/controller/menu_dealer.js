@@ -43,6 +43,7 @@ function add_Ingredient()
         throw "please enter ingredient";
     }else{
         item_ingredients.push(ingredient.value);
+        document.getElementById("ing_data").value=item_ingredients.join(",");
         console.log("Ingredient are :"+item_ingredients.join(","))
 
     }    
@@ -50,7 +51,7 @@ function add_Ingredient()
 
 function add_item(){
     try{
-        validateDealerMenu();
+       validateDealerMenu();
         var ingredients=item_ingredients.join(",");
     }catch($err){
         alert("Error : "+$err);
@@ -66,3 +67,4 @@ btn_item.onclick=function(){
     add_item();
 };
 
+// 
