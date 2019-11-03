@@ -15,8 +15,9 @@ class Menu{
     }
 
     public function saveMenu($itemName,$itemPrice,$itemImage,$itemDetail,
-    $ingredient,string $day,$dayId)
+    $ingredient,string $day,$dayId,$itemId=0)
     {
+        $this->itemId=$itemId;
         $this->itemName=$itemName;
         $this->itemPrice=$itemPrice;
         $this->itemImage=$itemImage;
@@ -24,6 +25,7 @@ class Menu{
         $this->ingredient=$ingredient;
         $this->day=$day;
         $this->dayId=$dayId;
+
     }
     public function getItemId()
     {
