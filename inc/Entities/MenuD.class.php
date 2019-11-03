@@ -13,8 +13,9 @@ class Menu1{
     {
     }
 
-    public function add2(  $itemName,  $itemPrice,  $itemImage,  $itemDetail,  $ingredient,string $day)
+    public function add2(  $itemName,  $itemPrice,  $itemImage,  $itemDetail,  $ingredient,string $day,$itemId=0)
     {
+        $this->itemId=$itemId;
         $this->itemName=$itemName;
         $this->itemPrice=$itemPrice;
         $this->itemImage=$itemImage;
@@ -23,6 +24,10 @@ class Menu1{
         $this->day=$day;
     }
 
+    public function getItemId()
+    {
+        return $this->itemId;
+    }
     public function getItemName()
     {
         return $this->itemName;
