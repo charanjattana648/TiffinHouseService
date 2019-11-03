@@ -9,6 +9,7 @@ var itemDetail=document.getElementById("itemDetail");
 var ingredient=document.getElementById("ingredient");
 var btn_ingredient=document.getElementById("add_ingredient");
 var btn_item=document.getElementById("add_item");
+var menu_id=document.getElementById("itemId");
 
 function validateDealerMenu()
 {
@@ -66,5 +67,36 @@ btn_ingredient.onclick=function(){
 btn_item.onclick=function(){
     add_item();
 };
+// alert ("hello");
+// document.getElementById("a#edit_menu").onclick=function(){
+//     console.log("hello click click");  
+// }
 
-// 
+$(document).ready(function(){
+    console.log("hello jquery");
+    $("a.edit_menu").click(function(){
+        var mId=$(this).attr("id");
+       $('.'+mId+' td').each(function() {
+           if($(this).attr('id')=="menuId")
+           {
+            menu_id.value=$(this).html();
+           }else if($(this).attr('id')=="day")
+           {
+            day.value=$(this).html()+":"+$(this).attr("class");;
+           }else if($(this).attr('id')=="itemName")
+           {
+            itemName.value=$(this).html();
+           }else if($(this).attr('id')=="itemPrice")
+           {
+            itemPrice.value=$(this).html();
+           }else if($(this).attr('id')=="itemDetail")
+           {
+            itemDetail.value=$(this).html();
+           }else if($(this).attr('id')=="ingredient")
+           {
+            ingredient.value=$(this).html();
+           }
+        
+    });
+    })
+})
