@@ -54,16 +54,28 @@ btn.onclick=function(){
   	if(!empty($_POST['uname_login']) && !empty($_POST['psw_login']))
   	{
     $auth=new Auth();
-    $auth::initialize("User");
-    $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"user");
+    $users="";
+    if($_POST['userType']=="dealer")
+    {
+      echo "dealer";
+      $auth::initialize("Dealer");
+      $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"dealer");
+    }else{
+      echo "user";
+      $auth::initialize("User");
+      $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"user");
+    }
+ 
+    
     if($users!="")
 		{
     $_SESSION['User_type']=$_POST['userType'];
     $_SESSION['user_Name']=$users->getUserEmail();
-    $_SESSION['loggedIn']=true;
-    echo $users->getUserEmail();
-    echo $_SESSION['User_type'];
-    
+    $_SESSION['loggedIn']=true;   
+    if($_POST['userType']=="dealer")
+    {
+      $_SESSION['company_name']=$users->getCompanyName();
+    } 
 		}else{
       $_SESSION['loggedIn']=false;
 			echo "<script>alert('please enter valid email and password');</script>";

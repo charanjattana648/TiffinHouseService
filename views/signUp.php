@@ -37,7 +37,7 @@ btn.onclick=function(){
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
-      <select id="user_type_signUp">
+      <select id="user_type_signUp" name="user_type_signUp">
       <option value="user">User</option>
       <option value="dealer">Dealer</option>
       </select>
@@ -92,26 +92,33 @@ btn.onclick=function(){
   // include ("./inc/Utility/auth.php");
   
 require_once  ("./inc/Entities/User.class.php");
+require_once  ("./inc/Entities/Dealer.class.php");
 require_once  ("./inc/Utility/auth.php");
   if(isset($_POST['submitSU']))
   {
 	
-    if(!empty($_POST['email_signUp']) && !empty($_POST['psw_signUp']) && !empty($_POST['psw_repeat_signUp']))
+    if($_POST['user_type_signUp']=='dealer')
   	{
-      echo "entering................";
-      $auth=new Auth("User"); 
-		echo $isMatch=auth::matchPass($_POST['psw_signUp'],$_POST['psw_repeat_signUp']);
+      $auth=new Auth("Dealer"); 
     echo "signUp with ".$_POST['email_signUp'];
 
-  
-		if($isMatch==0)
-		{
-		$user=new User();
-    $user->setData($_POST['fName'],"Jattana",$_POST['email_signUp'],$_POST['psw_signUp'],"784","134st 9538","V3v 5s5");
+		$dealer=new Dealer();
+    $dealer->setData($_POST['fName'],$_POST['lName'],$_POST['email_signUp'],$_POST['psw_signUp'],$_POST['pNumber'],$_POST['address'],$_POST['pCode']);
+    $dealer->setCompanyName($_POST['company_name']);
     //  initialize     
-    $auth::initialize("USer");
+    $auth::initialize("Dealer");
+		$auth::add_dealer($dealer,"Dealer");
+	}else{
+    
+    $auth=new Auth("User"); 
+    echo "signUp with ".$_POST['email_signUp'];
+
+		$user=new User();
+    $user->setData($_POST['fName'],$_POST['lName'],$_POST['email_signUp'],$_POST['psw_signUp'],$_POST['pNumber'],$_POST['address'],$_POST['pCode']);
+    //  initialize     
+    $auth::initialize("User");
 		$auth::add_user($user,"User");
-		}
-	}
+
+  }
 }
   ?>
