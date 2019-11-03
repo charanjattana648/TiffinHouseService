@@ -14,7 +14,7 @@ include("./views/login.php");
   <tr>
     <td>Monday</td>
     <td>
-    <div class="hover_menu_img"><a href="##"><img src="images/menu_chole-recipe.png"/> </a>
+    <div class="hover_menu_img"><a href="#veg_cauili"><img src="images/menu_chole-recipe.png"/> </a>
     <p>Chole Bature </p>
     <p>$15</p>
     </div>
@@ -101,7 +101,7 @@ include("./views/login.php");
 </table>
 
 <section class="Recipe">
-<section class="vegMenu">
+<section id="veg_cauili" class="vegMenu">
 <section class="leftphoto">
 <img class="menuimage" src="images/indian-cauliflower-potato-aloo-gobi.jpg" alt="male">
 </section>

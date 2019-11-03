@@ -13,6 +13,8 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 <div id="dealerMenu">
 <div >
 <form id="dForm" method="Post" action="menuD.php" enctype="multipart/form-data">
+<label for="itemId">ItemId</label>
+	<input type="text" name="itemId" id="itemId" readonly/><br>
 <select name="day" id="day">
     <option value="">Select Day</option>
     <option value="Monday:1">Monday</option>
@@ -45,6 +47,8 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	
     <button type="submit" name="submitItem" id="add_item">Add Item</button>
     <button type="submit" name="getItem">Get Item</button>
+    <button type="submit" name="deleteItem">Delete Item</button>
+    <button type="submit" name="updateItem">Update Item</button>
 	
 <!--itemName	itemPrice	itemImage	itemDetail	ingredient	day-->
 
@@ -52,8 +56,9 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 </div>
 </div>
 <article>
+
 <?php
- echo "<script src='./inc/controller/menu_dealer.js'></script>";
+
 if(isset($_POST['getItem']))
 {
     echo "Items fetched are : <br>";
@@ -67,32 +72,64 @@ if(isset($_POST['getItem']))
     $days=array();
     $isNewDay=true;
     
+    // foreach($menu as $m)
+    // {
+    //     // echo $m->getItemDetail()."<br>";
+    //     // echo $m->getIngredient()."<br>";
+     
+    //     if(in_array($m->getDay(),$days))
+    //     {
+    //         $isNewDay=false;
+    //     }else{
+    //         array_push($days,$m->getDay());
+    //         $isNewDay=true;
+    //     }
+    //     if($isNewDay)
+    //     {
+    //       echo '<div class="menutable">'.$m->getDay();
+    //     }
+    //     if($m->getItemImage()!=null)
+    //     {
+    //         echo '<a href="##"><img src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'"/> </a>';
+    //     }
+    //     echo'<div class="hover_menu_img">
+    //     <p>'.$m->getItemName().' </p>
+    //     <p>$'. $m->getItemPrice().'</p>        
+    //     </div>';
+    // }
+    // echo' </div>';
+//var_dump($menu);
+
+    echo'<table id="menu_d_table"><tr>
+    <td>Id</td>
+    <td>Day</td>
+    <td>ItemName</td>
+    <td>ItemPrice</td>
+    <td>ItemImage</td>
+    <td>ItemDetail</td>
+    <td>Ingredients</td>
+    <td>Action</td> 
+    </tr>';
+    
     foreach($menu as $m)
     {
-        // echo $m->getItemDetail()."<br>";
-        // echo $m->getIngredient()."<br>";
-     
-        if(in_array($m->getDay(),$days))
-        {
-            $isNewDay=false;
-        }else{
-            array_push($days,$m->getDay());
-            $isNewDay=true;
-        }
-        if($isNewDay)
-        {
-          echo '<div class="menutable">'.$m->getDay();
-        }
-        if($m->getItemImage()!=null)
-        {
-            echo '<a href="##"><img src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'"/> </a>';
-        }
-        echo'<div class="hover_menu_img">
-        <p>'.$m->getItemName().' </p>
-        <p>$'. $m->getItemPrice().'</p>        
-        </div>';
+       // echo "".$m->getItemId();
+        echo'<tr class="'.$m->getItemId().'">
+        <td id="menuId">'.$m->getItemId().'</td>
+        <td id="day" class="'.$m->getDayId().'">'.$m->getDay().'</td>
+        <td id="itemName">'.$m->getItemName().'</td>
+        <td id="itemPrice">'.$m->getItemPrice().'</td>
+        <td id="itemImage">'.'<a href=""><img src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'" style="height:50px;width:50px;"/> </a>'.'</td>
+        <td id="itemDetail">'.$m->getItemDetail().'</td>
+        <td id="ingredient">'.$m->getIngredient().'</td>
+       
+        <td id="x"><a class="edit_menu" id="'.$m->getItemId().'" href="#">edit</a></td></tr> ';
+
+
     }
-    echo' </div>';
+
+    echo "</table>";
+
 }
 if(isset($_POST['submitItem']))
 {
@@ -100,14 +137,49 @@ if(isset($_POST['submitItem']))
     $menu_day_array=explode(":",$_POST['day']);
     $binary = file_get_contents($_FILES['itemImage']['tmp_name']);
     $menu->saveMenu($_POST['itemName'],$_POST['itemPrice'],$binary,
-    $_POST['itemDetail'],$_POST['ingredient_data'],$menu_day_array[0],$menu_day_array[1]);
-    
+    $_POST['itemDetail'],$_POST['ingredient_data'],$menu_day_array[0],$menu_day_array[1]);    
     $db=new database();
     $db::initialize("Menu");
     $mealName=$db::addMeal($menu);
     echo $mealName." is Name";
 }
+if(isset($_POST['updateItem']))
+{
+    $menu=new Menu();
+    $menu_day_array=explode(":",$_POST['day']);
+    if(!empty($_FILES['itemImage']['tmp_name']))
+    {
+        $binary = file_get_contents($_FILES['itemImage']['tmp_name']);
+        $menu->saveMenu($_POST['itemName'],$_POST['itemPrice'],$binary,
+        $_POST['itemDetail'],$_POST['ingredient_data'],$menu_day_array[0],$menu_day_array[1],$_POST['itemId']);    
+    }else{
+        $menu->saveMenu($_POST['itemName'],$_POST['itemPrice'],"",$_POST['itemDetail'],$_POST['ingredient_data'],
+        $menu_day_array[0],$menu_day_array[1],$_POST['itemId']); 
+    }   
+    $db=new database();
+    $db::initialize("Menu");
+    $mealName=$db::updateMeal($menu);
+    
+}
+if(isset($_POST['deleteItem']))
+{
+    if(!empty($_POST['itemId']))
+    {
+        $db=new database();
+        $db::initialize("Menu");
+        $mealName=$db::deleteMeal((int)$_POST['itemId']);
+        echo '<script> alert("Item deleted successfully!");</script>';
+    }
+    else{
+        echo '<script> alert("Item cannot be deleted without item id!!");</script>';
+    }   
+   
+}
+echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="./inc/controller/menu_dealer.js"></script>';
+
 ?>
+
 </article>
 <p></p>
 
