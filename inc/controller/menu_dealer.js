@@ -10,7 +10,13 @@ var ingredient=document.getElementById("ingredient");
 var btn_ingredient=document.getElementById("add_ingredient");
 var btn_item=document.getElementById("add_item");
 var menu_id=document.getElementById("itemId");
+var rad_regular=document.getElementById("regular");
+var rad_offer=document.getElementById("onDiscount");
 
+
+
+
+//rad_regular.onselectionchange
 function validateDealerMenu()
 {
     if(day.value=="")
@@ -98,5 +104,20 @@ $(document).ready(function(){
            }
         
     });
+    })
+
+    $("#onDiscount").change(function(){
+        $("select#day").css("display","none");
+        $("#add_ingredient").css("display","none");
+        $("input#ingredient").css("display","none");
+        $("label#ing_l").css("display","none");
+
+    })
+    $("#regular").change(function(){
+        $("select#day").css("display","block");
+        $("#add_ingredient").css("display","block");
+        $("input#ingredient").css("display","block");
+        $("label#ing_l").css("display","block");
+
     })
 })
