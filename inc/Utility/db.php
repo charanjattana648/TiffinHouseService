@@ -246,9 +246,9 @@ class database{
                self::$db->bind(':Province',$cProfile->getProvince());
                self::$db->bind(':country',$cProfile->getCountry());
                self::$db->bind(':postalCode',$cProfile->getPostalCode());
-               if($cProfile->getCompanyImage()=="")
+               if($cProfile->getCompanyImage()!="")
                  {
-                  self::$db->bind(':companyImage',$cProfile->getCompanyName());
+                  self::$db->bind(':companyImage',$cProfile->getCompanyImage());
                  }
                self::$db->execute();
            }catch(PDOException $err)
@@ -278,8 +278,119 @@ class database{
            }
       }
 
+      /**Delete Company Detail */
+      public static function deleteCompanyDetail(string $companyName)
+      {
+          $delete_company_profile_query="DELETE FROM TiffinHouseDb.contactdetail WHERE companyName=:companyName";
+         try{
+               self::$db->query($delete_company_profile_query);
+               self::$db->bind(':companyName',$companyName);
+               self::$db->execute();
+           }catch(PDOException $err)
+           {
+               echo "Error : ".$err->getMessage();
+           }
+      }
+
+
+
+
+
+
+   /**get all daily offers by company name */
+   public static function getDailyOffer(string $companyName="")
+   {
+       $daily_offer_query="SELECT * FROM TiffinHouseDb.dailyoffer";
+       if(!empty($companyName))
+       {
+           $daily_offer_query="SELECT * FROM TiffinHouseDb.dailyoffer Where companyName=?";            
+       }
+       try{
+           $dailyOffer=new Menu();
+           self::$db->query($daily_offer_query);
+           self::$db->execute();
+           $dailyOffer=self::$db->resultSet();
+           return $dailyOffer;
+       }catch(PDOException $err)
+       {
+           echo "Error : ".$err->getMessage();
+       }
+   }
+
+   //itemId	companyName	itemName	itemDetail	itemPrice	itemImage
+  
+/**Add dailyOffer */
+   public static function addOffer(Menu $menu)
+   {
+       $dailyoffer_add_query="INSERT INTO TiffinHouseDb.dailyoffer (itemName, itemPrice, itemImage,itemDetail, companyName)
+        VALUES (:itemName,:itemPrice,:itemImage,:itemDetail,:companyName)";
+        try{
+            self::$db->query($dailyoffer_add_query);
+            self::$db->bind(':itemName',$menu->getItemName());
+            self::$db->bind(':itemPrice',$menu->getItemPrice());
+            self::$db->bind(':itemImage',$menu->getItemImage());
+            self::$db->bind(':itemDetail',$menu->getItemDetail());
+            self::$db->bind(':companyName',"Happy");
+            self::$db->execute();
+        }catch(PDOException $err)
+        {
+           echo "Error : ".$err->getMessage();
+        }
+   }
+
+   /**delete meal */
+   public static function deleteOffer($id)
+   {
+       $dailyoffer_delete_query="DELETE FROM  TiffinHouseDb.dailyoffer WHERE itemId=:id";
+       try{
+           self::$db->query($dailyoffer_delete_query);
+           self::$db->bind(':id',$id);
+           self::$db->execute();
+       }catch(PDOException $err)
+       {
+          echo "Error : ".$err->getMessage();
+       }
+   }
+   /**Updating meal */
+   public static function updateOffer(Menu $menu)
+   {   
+       $dailyoffer_update_query="UPDATE TiffinHouseDb.dailyoffer SET itemName=:itemName,itemPrice=:itemPrice,itemDetail=:itemDetail,
+       companyName=:companyName where itemId=:itemId";   
+       if($menu->getItemImage()!="")
+       {
+           $dailyoffer_update_query="UPDATE TiffinHouseDb.dailyoffer SET itemName=:itemName,itemPrice=:itemPrice,itemImage=:itemImage,itemDetail=:itemDetail,
+           companyName=:companyName where itemId=:itemId";
+       }
+      
+        try{
+            self::$db->query($dailyoffer_update_query);
+            self::$db->bind(':itemId',$menu->getItemId());
+            self::$db->bind(':itemName',$menu->getItemName());
+            self::$db->bind(':itemPrice',$menu->getItemPrice());
+            if($menu->getItemImage()!="")
+            {
+            self::$db->bind(':itemImage',$menu->getItemImage());
+            }
+            self::$db->bind(':itemDetail',$menu->getItemDetail());
+            self::$db->bind(':companyName',"Happy");
+            self::$db->execute();
+        }catch(PDOException $err)
+        {
+           echo "Error : ".$err->getMessage();
+        }
+   }
+
+
+
+
+
+
 
 }
+
+
+
+
 
 
 
