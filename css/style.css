@@ -275,17 +275,26 @@ section.Recipe{
 	height: auto;
 	background-color: #ffffff;
 }
-section.vegMenu{
-	width : auto;
-	height : 220px;
+section.vegMenu {
+    width: 80%;
+    height: 400px;
+	margin: auto;
 }
 img.menuimage{
   height: 180px;
   width: 100%;
   border: 2px solid black;
   border-radius: 50%;
-  
-
+}
+div#day_id {
+    display: inline-block;
+    width: 7%;
+}
+.menutable {
+    padding: 26px;
+}
+#menu_div{
+	text-align: center;
 }
 section.leftphoto{
   height: 180px;
