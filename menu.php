@@ -42,14 +42,13 @@ foreach($menu as $m)
       echo '<div class="menutable"><div id="day_id">'.$m->getDay().'</div>';
     }
     if($m->getItemImage()!=null)
-    {
-      
-        $itemName = preg_replace('/\s/', '', $m->getItemName());
+    {      
+        $itemName = preg_replace('/\s/', '_', $m->getItemName());
         echo '<a href="#'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'"/> </a>';
     }
     echo'<div class="hover_menu_img">
     <p>'.$m->getItemName().' </p>
-    <p>$'. $m->getItemPrice().'</p>';   
+    <p class="'.$itemName.'">$'. $m->getItemPrice().'</p>';   
     echo' </div>';
     if($i==3)
     {    
@@ -60,7 +59,7 @@ foreach($menu as $m)
 echo' </div>';
 foreach($menu as $m)
 {
-  $itemName = preg_replace('/\s/', '', $m->getItemName());
+  $itemName = preg_replace('/\s/', '_', $m->getItemName());
  echo '<section id="'.$itemName.'" class="vegMenu">
 <section class="leftphoto">
 <img style="height: 250px; width: 260px;" src="data:image/jpg;base64,'.base64_encode($m->getItemImage()).'"/>
@@ -74,9 +73,10 @@ foreach($ingredients as $i)
 echo '<li>'.$i.'</li>';
 }
 echo'</ul>
-<label for=""></label>
--<input type="number" min="0" id="qty_item" placeholder="enter qty" />+
-<button type="submit" id="submit_'.$itemName.'">Add to Cart</button>
+<span id="minus">-</span>
+<input type="number" min="0" name="qtyItem" id="qty_item" value="0" placeholder="enter qty" />
+<span id="plus">+</span>
+<button type="submit" name="mi_to_cart" id="'.$itemName.'">Add to Cart</button>
 </section>
 </section>';
 }
@@ -90,14 +90,14 @@ $("a").click(function(event){
   $("section.vegMenu").hide();
   itemName=itemName.replace(" ","");
 $("section"+itemName).show();
-
 })})
 </script>';
-
+echo '<script src="./inc/controller/menu.js"></script>'
 ?>
 
 	
 <!--Footer-->
 <?php
+
 include ("./views/footer.php");
 ?>
