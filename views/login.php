@@ -80,11 +80,6 @@ btn.onclick=function(){
       $_SESSION['loggedIn']=false;
 			echo "<script>alert('please enter valid email and password');</script>";
 		}
-    //$users->getUserEmail(); 
-		// foreach($users as $user)
-		// {
-		// 	echo "Hello ".$user["userEmail"];			
-		// }
 	}
 	
   

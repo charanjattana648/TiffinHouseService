@@ -27,7 +27,7 @@ session_start();
 			<?php }else{
 			echo '<li><a href="menu.php" >Menu</a></li>';
 			}?>
-			<li><a href="" >Order</a></li>
+			<li><a href="Order.php" >Order</a></li>
 			<li><a href="about_us.php" >About us</a></li>			
 			<li><a href="contact_us.php" >Contact us</a></li>
 			<?php
