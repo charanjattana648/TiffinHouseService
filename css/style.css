@@ -55,8 +55,7 @@ body{
 #tdeals_head{
 	text-align: center;	
 }
-/*######################
-  Main page Slider Css*/
+/*######################  Main page Slider Css*/
 * {box-sizing:border-box}
 
 /* Slideshow container */
@@ -239,8 +238,7 @@ form.login_form{
 }
 
 /* css for menu page */
-/**menu css
-###############################**/
+/**menu css**/
 .menu h1{
 	text-align: center;	
 }
@@ -402,8 +400,7 @@ border-radius: 50%;
 	
 }
 			
-/**Contact US css
-###############################**/
+/**Contact US css**/
 			
 .contact_div
 {
@@ -543,8 +540,7 @@ border-radius: 50%;
 				   margin-top: 15px;
 				}
 			
-/**footer css
-###############################**/
+/**footer css**/
 footer{
 	background-color : #cb7b50;
 	height: 320px;
@@ -658,3 +654,39 @@ footer::after{
 #ing_data{
 	display: none;
 }
+/**del order cart item*/
+td#del {
+    text-align: center;
+}
+/* plan your meal css**/
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+	display: inline-block;
+	margin-left: 60px;
+  }
+  
+  .price {
+	color: grey;
+	font-size: 22px;
+  }
+  
+  .card button {
+	border: none;
+	outline: 0;
+	padding: 12px;
+	color: white;
+	background-color: #cb7b50;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+  }
+  
+  .card button:hover {
+	opacity: 0.7;
+  }
