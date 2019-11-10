@@ -25,16 +25,19 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	 $count=count($menu);
 	 foreach($menu as $dailyOffer)
 	 {
-		$itemName = preg_replace('/\s/', '', $dailyOffer->getItemName());
+		$itemName = preg_replace('/\s/', '_', $dailyOffer->getItemName());
 		echo '<div class="today_deals_slides fade">
 		<div class="numbertext">'.$i.' / '.$count.'</div>
 		<img src="data:image/jpg;base64,'.base64_encode($dailyOffer->getItemImage()).'"/>
 		 <div class="tdeal_details"><p class="tdeal_price">$'.$dailyOffer->getItemPrice().'</p>
 		<p class="tdeal_name">'.$dailyOffer->getItemName().'</p>
-		   <div><button id="order_'.$itemName.'">Order Now</button></div>
+		   <div><button class="do_item" id="order_'.$itemName.'">Order Now</button></div>
 		</div>
 	  </div>';
 	 }
+	 echo '</div>';
+
+	 echo '<script src="./inc/Utility/index.js"></script>'
   ?>
 
  
