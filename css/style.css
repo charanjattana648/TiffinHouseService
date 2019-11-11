@@ -357,48 +357,15 @@ section.righttext p{
 	padding: 20px;		
 				
 		}
-.chef_msg{
-			
-	height: 350px;
-	width: 500px;
-	display: inline-block;
+		div#company_message_outer {
+			width: 75%;
+			height: auto;
+			margin-left: 10%;
 		}
-.chef_msg img{
-	position: absolute;
-			height: 350px;
-			width: 500px;
-			z-index: -1;
-			
+		div#company_message_outer {
+			background-color: #e4dce1;
+			margin-left: 10%;
 		}
-.message{
-	padding-top: 20px;
-	padding-left: 200px;
-	width: 80%;
-	height: auto;
-	word-wrap: break-word;
-	font-style: italic;
-	
-}
-.thali_img {
-	
-display: inline-block;
-height: 350px;
-width: 350px;
-margin-left:200px;
-margin-top: 20px;
-
-
-	
-}
-.thali_img img{
-	
-
-height: 300px;
-width: 300px;
-border-radius: 50%; 
-
-	
-}
 			
 /**Contact US css**/
 			
@@ -690,3 +657,11 @@ td#del {
   .card button:hover {
 	opacity: 0.7;
   }
+  /**meal plan css*/
+  h1#mealplan_heading {
+    text-align: center;
+}
+
+div#weekly_div, div#monthly_div {
+    text-align: center;
+}

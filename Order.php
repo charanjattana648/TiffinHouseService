@@ -8,6 +8,7 @@ require_once  ("inc/Entities/User.class.php");
 require_once  ("./inc/Entities/Menu.class.php");
 require_once ("./inc/Utility/db.php");
 require_once ("./inc/Utility/PDOAgent.class.php");
+
 require_once("./inc/controller/OrderCalculation.class.php");
 
 ?>
@@ -21,6 +22,7 @@ echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min
 echo"<script src='./inc/controller/Order.js'></script>";
 
 $order=new Order();
+
 foreach($_COOKIE as $key=>$val)
 {
     $pos=strpos($key,"item",0);
@@ -49,7 +51,7 @@ while($index < $count)
         //$total_price="<script>calculatePrice(".$cartItem['qty'].",".($cartItem['price']).")</script>";
         
         $total_price=$order->calculatePrice($cartItem['qty'],substr($cartItem['price'],1));
-        echo "<td>$".$total_price."</td>s";
+        echo "<td>$".$total_price."</td>";
        echo "<td id='del'><i id='item".$index."' class='fa fa-trash' aria-hidden='true'></i></td></tr>";
        $found=true;
     }    

@@ -1,4 +1,3 @@
-
 <?php         
 require_once("inc/config.inc.php");
 include ("./views/header.php");
@@ -83,13 +82,13 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	$companies_Detail=$db::getCompanyDetail();
 	foreach($companies_Detail as $com_detail)
 	{
-		$itemName = preg_replace('/\s/', '',$com_detail->getCompanyName());
+		$itemName = preg_replace('/\s/', '',$com_detail->getCompanyName());		
 	echo '<article class="dealer_article">
 		<div class="dealer_imageM">
-		<a href="#'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
+		<a href="./MealPlan.php" id="'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
    		</div>
 		<div class="dealer_selMenu">
-		<h2>'.$com_detail->getCompanyName().'</h2>
+		<h2>'.$com_detail->getCompanyName().'</h2>		
 		</div>
 		<div></div>
 	</article>';

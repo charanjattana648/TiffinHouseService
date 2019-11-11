@@ -186,7 +186,6 @@ class database{
       /**getting company description in about page */
       public static function getAboutCompany(string $companyName="")
       {
-          echo $companyName;
           $get_about_company_query="Select * from TiffinHouseDb.about";
           if($companyName!="")
           {
@@ -338,7 +337,7 @@ class database{
         }
    }
 
-   /**delete meal */
+   /**delete offer */
    public static function deleteOffer($id)
    {
        $dailyoffer_delete_query="DELETE FROM  TiffinHouseDb.dailyoffer WHERE itemId=:id";
@@ -351,7 +350,7 @@ class database{
           echo "Error : ".$err->getMessage();
        }
    }
-   /**Updating meal */
+   /**Updating offer */
    public static function updateOffer(Menu $menu)
    {   
        $dailyoffer_update_query="UPDATE TiffinHouseDb.dailyoffer SET itemName=:itemName,itemPrice=:itemPrice,itemDetail=:itemDetail,
@@ -380,11 +379,59 @@ class database{
         }
    }
 
+/**get tiffin plan */
+public static function getTiffinPlan(string $companyName)
+{
+    
+    $search_item_query="SELECT * FROM TiffinHouseDb.MealPlan Where companyName=:companyName order by subscriptionType desc, price ";            
+    
+    try{
+        $meal=new MealPlan();
+        self::$db->query($search_item_query);          
+        self::$db->bind(':companyName',$companyName);     
+        self::$db->execute();
+        $meal=self::$db->resultSet();
+        return $meal;
+    }catch(PDOException $err)
+    {
+        echo "Error : ".$err->getMessage();
+    }
+}
+/**Add meal */
+public static function addMealPlan(MealPlan $mealplan)
+{
+    //INSERT INTO `MealPlan`(`companyName`, `tiffinType`, `price`, `tiffinDescription`, `subscriptionType`)
+    $meal_add_query="INSERT INTO TiffinHouseDb.MealPlan (companyName, tiffinType, price,tiffinDescription, subscriptionType)
+     VALUES (:companyName,:tiffinType,:price,:tiffinDescription,:subscriptionType)";
+     try{
+         self::$db->query($meal_add_query);
+         self::$db->bind(':companyName',$menu->getCompanyName());
+         self::$db->bind(':tiffinType',$menu->getTiffinType());
+         self::$db->bind(':price',$menu->getPrice());
+         self::$db->bind(':tiffinDescription',$menu->getTiffinDescription());
+         self::$db->bind(':subscriptionType',$menu->getSubscriptionType());
+         self::$db->execute();
+     }catch(PDOException $err)
+     {
+        echo "Error : ".$err->getMessage();
+     }
+}
 
-
-
-
-
+/**delete tiffin plan*/
+public static function deleteMealPlan($companyName,$tiffinType,$subscriptionType)
+{
+    $meal_delete_query="DELETE FROM  TiffinHouseDb.Menu WHERE companyName=:companyName and tiffinType=:tiffinType and subscriptionType=:subscriptionType ";
+    try{
+        self::$db->query($meal_delete_query);
+        self::$db->bind(':companyName',$companyName);
+        self::$db->bind(':tiffinType',$tiffinType);
+        self::$db->bind(':subscriptionType',$subscriptionType);
+        self::$db->execute();
+    }catch(PDOException $err)
+    {
+       echo "Error : ".$err->getMessage();
+    }
+}
 
 }
 
