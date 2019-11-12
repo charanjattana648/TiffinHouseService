@@ -16,6 +16,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 	
 	?>
 	<!--div for paragraph-->
+	<div class="about-us-outer">
 	<div class="about_us">	
 	<h1>About Us</h1>	
 	<?php 
@@ -27,6 +28,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 		  }
 	?>
 	</div>
+		</div>
 	<div id="company_message_outer">
 		  <?php		 
 		   $aboutUs=$db::getAboutCompany(); 
