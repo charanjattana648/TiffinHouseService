@@ -6,7 +6,7 @@ require_once  ("inc/Utility/db.php");
 require_once  ("inc/Entities/ContactUs.class.php");
 
 ?>
-	<article>
+	<article class="contact-us-outer">
 	<div class="contact_div">
 		<h3>Contact Us</h3>
 		<form class="contact_form" action="contact_us.php" method="POST"> 
@@ -14,14 +14,14 @@ require_once  ("inc/Entities/ContactUs.class.php");
 		   <option value="admin">Tiffin House Service (Admin)</option>
 			<option value="happy">Happy</option>
 		</select><br>
-		<label for="cfName">First Name:</label>
+		<!--<label for="cfName">First Name:</label>-->
 		<input type="text" name="fName_cu" placeholder="Enter FirstName"/><br>
-		<label for="cLName">Last Name:</label>
+		<!--<label for="cLName">Last Name:</label>-->
 		<input type="text" name="lName_cu" placeholder="Enter LastName"/><br>
-		<label for="cEmail">Email:</label>
+		<!--<label for="cEmail">Email:</label>-->
 		<input type="email" name="email_cu" placeholder="Enter Email"/><br>
-		<label for="cMessage">Message:</label>
-		<textarea id="cMessage" name="message_cu"  cols="20" rows="4" placeholder="Enter Message"></textarea><br>
+		<!--<label for="cMessage">Message:</label>-->
+		<textarea id="cMessage" name="message_cu"  rows="8" placeholder="Enter Message"></textarea><br>
 		<button type="submit" name="submit_message" id="sendBtn_cu">Send</button> 
 		<button type="reset" id="refresh_cu">Reset</button>
 		</form>
