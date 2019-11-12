@@ -8,5 +8,14 @@ $(document).ready(function(){
         // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         // location.reload();
     })
+
+    
+    $("#pay_by_card").hide();
+    $("input#byCash").click(function(){
+        $("#pay_by_card").hide();
+    })
+    $("input#byCard").click(function(){
+        $("#pay_by_card").show();
+    })
 })
 

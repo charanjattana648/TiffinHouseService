@@ -24,10 +24,11 @@ body{
 	display: inline;
 	text-align: center;
 }
-.head_bottom{
-	width: 100%;
-	display: inline;
-	text-align: right;
+.head_bottom {
+    width: 100%;
+    display: inline-block;
+    text-align: right;
+    margin-top: 15px;
 }
 .head_bottom nav{
 		
@@ -41,12 +42,11 @@ body{
 	display: inline;
 	margin: 0 30px 0 0;
 }
-.head_bottom  a{
-	
-	text-decoration: none;
-	color: #f1f1f1;
-	font-size: 20px;
-	font-weight: 600;
+.head_bottom a {
+    text-decoration: none;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 600;
 }
 .head_bottom  a:hover{
 	color: black;
@@ -363,7 +363,6 @@ section.righttext p{
 			margin-left: 10%;
 		}
 		div#company_message_outer {
-			background-color: #e4dce1;
 			margin-left: 10%;
 		}
 			
@@ -592,11 +591,13 @@ footer{
 
 span#login_page , span#signUp_page,span#logout_btn {
     color: #f1f1f1;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
 }
 span#login_page:hover, span#signUp_page:hover, span#logout_btn:hover{
-	color: black;
+	color: #ccc;
+	cursor: pointer;
 }
 
 div#dealerMenu{
@@ -664,4 +665,288 @@ td#del {
 
 div#weekly_div, div#monthly_div {
     text-align: center;
+}
+
+
+/*
+New CSS Gurinder
+*/
+.comp_message_inner {
+    display: inline-block;
+    width: 32%;
+    margin: 0 22px 0 0px;
+    background: #e4dce1;
+}
+.comp_message_inner:last-child {
+    margin: 0;
+}
+.comp_message_inner h1 {
+    text-align: left;
+    font-size: 20px;
+    background: #474f53;
+    margin: 0;
+    padding: 15px 0 15px 30px;
+    color: #fff;
+}
+.comp_message_inner p {
+    margin: 0;
+    padding: 25px 25px;
+    line-height: 24px;
+    text-align: left;
+}
+footer {
+    height: auto;
+    margin: 60px 0 0 0;
+    display: inline-block;
+    width: 100%;
+}
+header {
+    margin-bottom: 60px;
+    display: inline-block;
+    width: 100%;
+    text-align: -webkit-center;
+}
+.about-us-outer {
+    display: inline-block;
+    width: 100%;
+}
+.about_us {
+    width: 85%;
+    background-color: #e4dce1;
+    margin: 0 auto;
+    padding: 15px 35px;
+    margin-bottom: 60px;
+}
+div#company_message_outer {
+    margin: 0 auto;
+}
+div#company_message_outer {
+    margin: 0 auto;
+    width: 85%;
+}
+.comp_message_inner {
+    display: inline-block;
+    width: 33%;
+    background: #e4dce1;
+    border-right: 20px solid #fff;
+    margin: 0;
+}
+.comp_message_inner:nth-child(3) {
+    border-right: none;
+}
+.footer_top {
+    width: 85%;
+    margin: 0 auto;
+    text-align: left;
+}
+.footer_top .left, .footer_top .center_1, .footer_top .center_2, .footer_top .right {
+    display: inline-block;
+    width: 24%;
+    padding: 20px 15px;
+}
+.footer_top h3 {
+    margin: 0;
+}
+.center_1 p {
+    display: inline-block;
+}
+.footer_line {
+    background-color: black;
+    height: 1.5px;
+    border: none;
+    margin: 0;
+}
+.footer_copyRight {
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+}
+.footer_copyRight p {
+    margin: 0;
+}
+article.contact-us-outer {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    padding: 0 40px;
+}
+.contact_div {
+    display: inline-block;
+    width: 50%;
+    background: #ccc;
+    padding: 40px 40px;
+    text-align: left;
+}
+.contact_form {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    text-align: left;
+    background: none;
+    margin-top: 20px;
+}
+.contact_form select {
+    width: 100%;
+    height: 40px;
+    padding: 0 0 0 15px;
+    margin: 0 0 20px 0;
+    border: none;
+}
+textarea#cMessage {
+    width: 100%;
+    margin: 0 0 15px 0;
+    padding: 15px 0 0 20px;
+}
+.contact_form input {
+    padding: 0 0 0 20px !important;
+    margin: 0 0 20px 0 !important;
+    width: 100% !important;
+    height: 38px !important;
+    font-size: 12px !important;
+}
+.contact_form button {
+    margin: 0 40px 0 0px;
+    width: 43%;
+    display: inline-block;
+    float: left;
+}
+.contact_div h3 {
+    margin: 0;
+}
+.about_us p {
+    line-height: 24px;
+}
+.head_top {
+    width: 95%;
+    display: inline-block;
+    text-align: left;
+}
+.top_head {
+    background: #363636;
+    padding: 25px 0px;
+    margin: 0 0 15px 0;
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+}
+.top_head ul {
+    list-style: none;
+    display: inline-block;
+    width: 30%;
+    padding: 0 30px 0 0;
+    margin: 0;
+    text-align: right;
+}
+.top_head li {
+    display: inline;
+    margin-left: 25px;
+}
+
+/**order.php css*/
+div#payment_details {
+    width: 63%;
+    background-color: antiquewhite;
+    padding: 2px 15px 0 15px;
+    display: inline-block;
+}
+div#summary {
+    width: 30%;
+    height: 414px;
+    display: inline-block;
+}
+div.order_outer_div {
+	display: inline-block;
+	width: 100%;
+}
+
+
+/**copied css for order form*/
+
+.row {
+	display: -ms-flexbox; /* IE10 */
+	display: flex;
+	-ms-flex-wrap: wrap; /* IE10 */
+	flex-wrap: wrap;
+	margin: 0 -16px;
+  }
+  
+  .col-25 {
+	-ms-flex: 25%; /* IE10 */
+	flex: 25%;
+  }
+  
+  .col-50 {
+	-ms-flex: 50%; /* IE10 */
+	flex: 50%;
+  }
+  
+  .col-75 {
+	-ms-flex: 75%; /* IE10 */
+	flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+	padding: 0 16px;
+  }
+  
+  .container {
+	background-color: #f2f2f2;
+	padding: 5px 20px 15px 20px;
+	/* border: 1px solid lightgrey; */
+	/* border-radius: 3px; */
+  }
+  
+  input[type=text] {
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+  }
+  
+  label {
+	margin-bottom: 10px;
+	display: block;
+  }
+  
+  .icon-container {
+	margin-bottom: 20px;
+	padding: 7px 0;
+	font-size: 24px;
+  }
+  
+  .btn {
+	background-color: #cb7b50;
+	color: white;
+	padding: 12px;
+	margin: 10px 0;
+	border: none;
+	width: 100%;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 17px;
+  }
+  
+  .btn:hover {
+	background-color: #cb7b50;
+  }
+  
+  a {
+	color: #2196F3;
+  }
+  
+  hr {
+	border: 1px solid lightgrey;
+  }
+  
+  span.price {
+	float: right;
+	color: grey;
+  }
+  form#payment_form {
+    border: none;
 }
