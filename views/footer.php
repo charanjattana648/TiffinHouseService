@@ -10,9 +10,9 @@
 		</div>
 		<div class="center_1">
 			<h3>Follow Us</h3>
-			<i class='fab fa-facebook-square' style='font-size:36px'></i>
-			<i class='fab fa-instagram' style='font-size:36px'></i>
-			<i class='fab fa-google' style='font-size:36px'></i>
+			<p><i class='fab fa-facebook-square' style='font-size:36px'></i></p>
+			<p><i class='fab fa-instagram' style='font-size:36px'></i></p>
+			<p><i class='fab fa-google' style='font-size:36px'></i></p>
 			
 		</div>
 			<div class="center_2">

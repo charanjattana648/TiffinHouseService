@@ -15,6 +15,22 @@ session_start();
 	<body>
 	
 	<header>
+		<div class="top_head">
+			<ul>
+			<?php
+			if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']=='true')
+			{
+				?>
+			   <!-- <li ><span  name="logout_btn" id="logout_btn">Logout</span></li> -->
+			   <li><a href="<?php $_SESSION['loggedIn']=false; ?>" >Logout</a></li>
+			   <?php
+			}else{
+					 echo' <li ><span id="login_page">Login</span></li>
+				      <li ><span id="signUp_page">SignUp</span></li>';
+			 }
+			?>
+			</ul>
+		</div>
 		<div class="head_top"><div class="logo"><img src="images/logoItm.jpg" height="100px" width="140px"/></div>
 			<div class="title"><h1>Tiffin House Service</h1></div></div>
 			<div class="head_bottom"><nav><ul>
