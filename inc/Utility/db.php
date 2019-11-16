@@ -17,11 +17,15 @@ class database{
         $menu_query="SELECT * FROM TiffinHouseDb.Menu order by dayId";
         if(!empty($companyName))
         {
-            $menu_query="SELECT * FROM TiffinHouseDb.Menu Where companyName=?";            
+            $menu_query="SELECT * FROM TiffinHouseDb.Menu Where companyName=:companyName order by dayId,ItemName desc";            
         }
         try{
             $menu=new Menu();
             self::$db->query($menu_query);
+            if(!empty($companyName))
+            {
+                self::$db->bind(":companyName",$companyName);   
+            }
             self::$db->execute();
             $menu=self::$db->resultSet();
 
@@ -267,7 +271,7 @@ class database{
                self::$db->query($get_company_profile_query);
                if($companyName!="")
                {
-               self::$db->bind(':companyName',$cProfile->getCompanyName());
+               self::$db->bind(':companyName',$companyName);
                }
                self::$db->execute();
                return self::$db->resultSet();

@@ -1,14 +1,20 @@
+<?php
+session_start();
+?>
 <?php         
 require_once("inc/config.inc.php");
-include ("./views/header.php");
-include("./views/signUp.php");
-include("./views/login.php");
-require_once ("./inc/Utility/auth.php");
+
+require_once  ("inc/Entities/Dealer.class.php");
 require_once  ("inc/Entities/User.class.php");
 require_once  ("./inc/Entities/Menu.class.php");
 require_once  ("./inc/Entities/CompanyProfile.class.php");
+require_once ("./inc/Utility/auth.php");
 require_once ("./inc/Utility/db.php");
 require_once ("./inc/Utility/PDOAgent.class.php");
+include ("./views/header.php");
+include("./views/signUp.php");
+include("./views/login.php");
+
 //require_once ("./inc/config.inc.php");
 ?>
 	<h2 id="tdeals_head">Today's Deals</h2>
@@ -64,7 +70,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
   -->
 
-<script src="dailyDeals.js"></script>
+<script src="../inc/controller/dailyDeals.js"></script>
 
 <!-- The dots/circles -->
 <div style="text-align:center">
@@ -85,7 +91,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 		$itemName = preg_replace('/\s/', '',$com_detail->getCompanyName());		
 	echo '<article class="dealer_article">
 		<div class="dealer_imageM">
-		<a href="./MealPlan.php" id="'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
+		<a href="./users/MealPlan.php?name='.$com_detail->getCompanyName().'" id="'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
    		</div>
 		<div class="dealer_selMenu">
 		<h2>'.$com_detail->getCompanyName().'</h2>		
@@ -117,20 +123,7 @@ require_once ("./inc/Utility/PDOAgent.class.php");
 		</form>
 	</div>
 	</section>-->
-	<div>
-	<h1> Don't Know how to Order? Follow easy three steps. </h1>
-	<ul>
-		<li>
-		Create an Account.
-		</li>
-		<li>
-			Choose your Meal
-		</li>
-		<li>
-			Just order.
-		</li>
-	</ul>	
-	</div>
+
 <!--Footer-->
 <?php
 include ("./views/footer.php")

@@ -91,9 +91,9 @@ btn.onclick=function(){
   //require "./model/dbConn.php";
   // include ("./inc/Utility/auth.php");
   
-require_once  ("./inc/Entities/User.class.php");
-require_once  ("./inc/Entities/Dealer.class.php");
-require_once  ("./inc/Utility/auth.php");
+// require_once  ("./inc/Entities/User.class.php");
+// require_once  ("./inc/Entities/Dealer.class.php");
+// require_once  ("./inc/Utility/auth.php");
   if(isset($_POST['submitSU']))
   {
 	

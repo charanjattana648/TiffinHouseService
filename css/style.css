@@ -854,10 +854,11 @@ div#payment_details {
 div#summary {
     width: 30%;
     height: 414px;
-    display: inline-block;
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 20px;
 }
 div.order_outer_div {
-	display: inline-block;
 	width: 100%;
 }
 

@@ -1,5 +1,6 @@
 <?php
 // include ("../Entities/User.class.php");
+//require_once  ("inc/Entities/Dealer.class.php");
 require_once ("PDOAgent.class.php");
 class Auth{
 	private static $db;	
@@ -71,7 +72,7 @@ public static function signIn_user($userEmail,$pass,$type)
 		self::$db->bind(":userEmail",$userEmail);
 		self::$db->bind(":psw",$pass);
 		self::$db->execute();
-		$user_data=new Dealer();
+		//$user_data=new Dealer();
 		$user_data=self::$db->singleResult();	
 		//var_dump($user_data);
 		return($user_data);

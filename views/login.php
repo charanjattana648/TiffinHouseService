@@ -57,16 +57,18 @@ btn.onclick=function(){
     $users="";
     if($_POST['userType']=="dealer")
     {
-      echo "dealer";
+     // echo "dealer";
       $auth::initialize("Dealer");
       $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"dealer");
-    }else{
-      echo "user";
+    }else if($_POST['userType']=="user"){
+     // echo "user";
       $auth::initialize("User");
       $users=$auth::signIn_user($_POST['uname_login'],$_POST['psw_login'],"user");
+    }else{
+
     }
  
-    
+    $refresh=false;   
     if($users!="")
 		{
     $_SESSION['User_type']=$_POST['userType'];
@@ -75,7 +77,14 @@ btn.onclick=function(){
     if($_POST['userType']=="dealer")
     {
       $_SESSION['company_name']=$users->getCompanyName();
-    } 
+    }     
+    //$page = $_SERVER['PHP_SELF'];
+    if( $refresh==false)
+    {
+     // echo "<script>history.go(0);</script>";
+      $refresh=true;
+    }
+    
 		}else{
       $_SESSION['loggedIn']=false;
 			echo "<script>alert('please enter valid email and password');</script>";
