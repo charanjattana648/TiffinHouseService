@@ -62,10 +62,15 @@ while($index < $count)
 
 if($found==false){
     echo "Card is Empty";
+    $_SESSION['tax']=0;
+    $_SESSION['totalPrice']=0;
 }else{
     echo "<tr><td>Total Tax</td><td>".$order->toatlQty()."</td><td colspan='2'>$".$order->calculateTax()."</td><td></td></tr>";
     echo "<tr><td>Total Price</td><td>".$order->toatlQty()."</td><td colspan='2'>$".$order->calculateTotalPrice()."</td><td></td></tr>";
     echo "</table>";
+    $_SESSION['tax']=$order->calculateTax();
+    $_SESSION['totalPrice']=$order->calculateTotalPrice();
+
 }
 echo '</div>';
 
@@ -73,12 +78,12 @@ echo '</div>';
 
 
 <?php
-echo '<div id="payment_details"><form id="payment_form">
+echo '<div id="payment_details"><form method="POST" id="payment_form">
 <div class="row">
 <div class="col-50">
   <h3>Billing Address</h3>
   <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-  <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+  <input type="text" id="fname" name="fullname" placeholder="John M. Doe">
   <label for="email"><i class="fa fa-envelope"></i> Email</label>
   <input type="text" id="email" name="email" placeholder="john@example.com">
   <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
@@ -105,14 +110,14 @@ echo '<div id="payment_details"><form id="payment_form">
   </div>
   <div class="col-50">
     <label for="pickUp">PickUp</label>
-    <input type="radio" id="pickUp" value="pickUp" name="shipping_option">
+    <input type="radio" id="pickUp" value="pickUp" name="shipping_option" checked>
   </div>
 </div>
 
 <div class="row">
   <div class="col-50">
     <label for="byCash">Cash</label>
-    <input type="radio" id="byCash" value="Cash" name="paymentType">
+    <input type="radio" id="byCash" value="Cash" name="paymentType" checked>
   </div>
   <div class="col-50">
     <label for="byCard">Card</label>
@@ -152,9 +157,57 @@ echo '<div id="payment_details"><form id="payment_form">
      </div>
    </div>
    </div>
-   <input type="submit" value="Continue to checkout" class="btn">
+   <input type="submit" name="checkout" value="Continue to checkout" class="btn">
 </form>
      </div>';
+?>
+
+<?php
+//var_dump($_COOKIE);
+
+if(isset($_POST['checkout']))
+{
+  $personDetails=new OrderPersonDetails();
+  $OrderedItem=new OrderedItemDetails();
+  $paymentStatus="completed";
+  if($_POST['paymentType']=="Cash")
+  {
+    $paymentStatus="pending";
+  }
+  if(isset($_SESSION['totalPrice']) && $_SESSION['totalPrice']!=0)
+  {
+  $personDetails->addData( $_POST['fullname'], $_POST['email'],$_POST['address'] ,
+  $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['shipping_option'], $_POST['paymentType'], $_SESSION['tax'],$_SESSION['totalPrice'], $paymentStatus);
+   $db=new database();
+   $db::initialize("OrderPersonDetails");
+   $orderId=$db::addOrderpersondetails($personDetails);
+
+   //adding item to table
+   if( $orderId!="")
+   {
+   foreach($_COOKIE as $key=>$val)
+    {
+      if(stristr($key, 'item')) {
+    
+        $cartItem=json_decode($val,true);
+          echo $cartItem['itemName']."<br>";
+          // $cartItem['companyName'] change name
+          $OrderedItem->addData($orderId,$cartItem['itemName'], $cartItem['qty'], $cartItem['price'],"Hunger Feed");
+          $db::initialize("OrderedItemDetails");
+          $x=$db::addOrdereditemdetails($OrderedItem);
+      }
+    }
+  }
+   
+   echo "<script> alert('". $orderId."'); </script>";
+  
+  }else{
+    echo "<script> alert('You don't have any Items to Pay'); </script>";
+  }
+
+}
+
+
 ?>
 
 <!--Footer-->
