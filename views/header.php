@@ -57,7 +57,9 @@
 			<li><a href="http://localhost/dealers/menu_dealer.php" >Menu</a></li>
 			 
 			<li><a href="dealers/Order.php" >Order</a></li>
-			<li><a href="http://localhost/dealers/about_us_dealer.php" >About us</a></li>			
+			<li><a href="http://localhost/dealers/about_us_dealer.php" >About us</a>
+			
+			</li>			
 			<li><a href="http://localhost/dealers/contact_us_dealer.php" >Contact us</a></li>
 			<li><a href="http://localhost/dealers/companyProfile.php" >Company Profile</a></li>
 			<?php }else{
