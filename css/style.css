@@ -951,3 +951,7 @@ div.order_outer_div {
   form#payment_form {
     border: none;
 }
+
+a#menu_ul {
+    position: relative;
+}
