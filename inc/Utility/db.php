@@ -401,7 +401,7 @@ public static function getTiffinPlan(string $companyName)
         echo "Error : ".$err->getMessage();
     }
 }
-/**Add meal */
+/**Add meal plan*/
 public static function addMealPlan(MealPlan $mealplan)
 {
     //INSERT INTO `MealPlan`(`companyName`, `tiffinType`, `price`, `tiffinDescription`, `subscriptionType`)
@@ -409,11 +409,11 @@ public static function addMealPlan(MealPlan $mealplan)
      VALUES (:companyName,:tiffinType,:price,:tiffinDescription,:subscriptionType)";
      try{
          self::$db->query($meal_add_query);
-         self::$db->bind(':companyName',$menu->getCompanyName());
-         self::$db->bind(':tiffinType',$menu->getTiffinType());
-         self::$db->bind(':price',$menu->getPrice());
-         self::$db->bind(':tiffinDescription',$menu->getTiffinDescription());
-         self::$db->bind(':subscriptionType',$menu->getSubscriptionType());
+         self::$db->bind(':companyName',$mealplan->getCompanyName());
+         self::$db->bind(':tiffinType',$mealplan->getTiffinType());
+         self::$db->bind(':price',$mealplan->getPrice());
+         self::$db->bind(':tiffinDescription',$mealplan->getTiffinDescription());
+         self::$db->bind(':subscriptionType',$mealplan->getSubscriptionType());
          self::$db->execute();
      }catch(PDOException $err)
      {
@@ -436,6 +436,62 @@ public static function deleteMealPlan($companyName,$tiffinType,$subscriptionType
        echo "Error : ".$err->getMessage();
     }
 }
+
+//INSERT INTO `ordereditemdetails`(`itemId`, `orderId`, `itemName`, `qty`, `price`, `itemTotalPrice`, `companyName`) VALUES (
+
+/**Add ordereditemdetails */
+public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
+{
+    $orderedItems_add_query="INSERT INTO TiffinHouseDb.Ordereditemdetails (orderId,itemName,qty, price,itemTotalPrice,companyName)
+     VALUES (:orderId, :itemName,:qty, :price,:itemTotalPrice,:companyName)";
+     try{
+         self::$db->query($orderedItems_add_query);
+         self::$db->bind(':orderId',$ordereditems->getOrderId());
+         self::$db->bind(':itemName',$ordereditems->getItemName());
+         self::$db->bind(':qty',$ordereditems->getQty());
+         self::$db->bind(':price',$ordereditems->getPrice());
+         self::$db->bind(':itemTotalPrice',$ordereditems->getItemTotalPrice());
+         self::$db->bind(':companyName',$ordereditems->getCompanyName());
+         self::$db->execute();
+     }catch(PDOException $err)
+     {
+        echo "Error : ".$err->getMessage();
+     }
+}
+//INSERT INTO `orderpersondetails`(`orderId`, `name`, `email`, `address`, `city`, `state`, 
+//`zip`, `shippingOption`, `paymentType`, `tax`, `totalPrice`, `paymentStatus`)
+public static function addOrderpersondetails(Orderpersondetails $persondetails)
+{
+    $persondetails_add_query="INSERT INTO TiffinHouseDb.Orderpersondetails (name,email,address,city,state,zip,shippingOption,paymentType,tax,totalPrice,paymentStatus)
+     VALUES (:name,:email,:address,:city,:state,:zip,:shippingOption,:paymentType,:tax,:totalPrice,:paymentStatus)";
+     try{
+         self::$db->query($persondetails_add_query);
+         self::$db->bind(':name',$persondetails->getName());
+         self::$db->bind(':email',$persondetails->getEmail());
+         self::$db->bind(':address',$persondetails->getAddress());
+         self::$db->bind(':city',$persondetails->getCity());
+         self::$db->bind(':state',$persondetails->getState());
+         self::$db->bind(':zip',$persondetails->getZip());
+         self::$db->bind(':shippingOption',$persondetails->getShippingOption());
+         self::$db->bind(':paymentType',$persondetails->getPaymentType());
+         self::$db->bind(':tax',$persondetails->getTax());
+         self::$db->bind(':totalPrice',$persondetails->getTotalPrice());
+         self::$db->bind(':paymentStatus',$persondetails->getPaymentStatus());
+         $orderId=self::$db->execute();
+         echo $orderId;
+         return $orderId;
+     }catch(PDOException $err)
+     {
+        echo "Error : ".$err->getMessage();
+     }
+}
+
+
+
+
+
+
+
 
 }
 
