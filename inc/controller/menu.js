@@ -27,6 +27,7 @@ $(document).ready(function(){
         cartObject.itemName=item_name;
         cartObject.qty=qty;
         cartObject.price=price;
+        cartObject.companyName=companyName;
         var cart_data=JSON.stringify(cartObject);        
         var cookie_index=0;
         var cookie_data_array=(document.cookie).split("; ")
