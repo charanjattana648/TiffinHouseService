@@ -12,7 +12,7 @@
 //require_once ("./inc/config.inc.php");
 require_once("../requireFiles.php");
 ?>
-<h2><?php if(isset($_SESSION['companyName'])){echo $_SESSION['companyName']." ";}?>Menu</h2>
+<h2 class="menuHead">Company Name: <?php if(isset($_SESSION['companyName'])){echo $_SESSION['companyName']." ";}?>Menu</h2>
 <?php
 
 
@@ -74,9 +74,8 @@ foreach($ingredients as $i)
 echo '<li>'.$i.'</li>';
 }
 echo'</ul>
-<span id="minus">-</span>
+<span>Enter Quantity</span>
 <input type="number" min="0" name="qtyItem" id="qty_item" value="0" placeholder="enter qty" />
-<span id="plus">+</span>
 <button type="submit" class="mi_to_cart" name="mi_to_cart" id="'.$itemName.'">Add to Cart</button>
 </section>
 </section>';

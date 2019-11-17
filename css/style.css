@@ -955,3 +955,132 @@ div.order_outer_div {
 a#menu_ul {
     position: relative;
 }
+
+div#day_id {
+    display: inherit;
+    width: 25%;
+    text-align: center;
+    font-size: 24px;
+    margin: 0 auto;
+    padding: 15px 0;
+    background: #ccc;
+}
+h2.menuHead {
+    margin: 0 auto;
+    display: inherit;
+    width: 50%;
+    text-align: center;
+    background: #ccc;
+    padding: 20px 0;
+}
+a#menu_items {
+    margin: 0 0 0 20px;
+}
+.hover_menu_img {
+    margin-left: 0;
+}
+.menutable p {
+    text-align: center;
+    margin: 40px 0 0 0;
+    font-size: 24px;
+}
+.menutable p:nth-child(even) {
+    margin-top: 42px;
+}
+p.price {
+    text-align: center !important;
+}
+#weekly_div p {
+    text-align: left;
+    padding: 0 9px;
+}
+
+#weekly_div label {
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 42%;
+    float: left;
+    text-align: right;
+}
+
+ #weekly_div input#tiff_qty {
+    width: 25%;
+    height: 32px;
+}
+#weekly_div .card button {
+    margin: 0;
+}
+.righttext h1 {
+    margin: 10px 0 0 0;
+}
+.righttext h3 {
+    margin: 0;
+}
+.righttext ul {
+    padding: 0 0 0 26px;
+    list-style-type: square;
+    margin-top: 6px;
+    display: inline-block;
+    width: 100%;
+}
+.righttext li {
+    width: 25%;
+    float: left;
+}
+.righttext button {
+    width: 25%;
+}
+.righttext input#qty_item {
+    height: 42px;
+    width: 10%;
+    padding: 0 0 0 10px;
+    margin: 0px 10px 0 10px;
+}
+.righttext span {
+    padding: 13px 20px;
+    background: #ccc;
+}
+#tdeals_head {
+    margin: 0 0 20px 0;
+}
+table {
+    border-spacing: 0;
+    width: 100%;
+}
+th {
+    border: none;
+    box-sizing: border-box;
+    background: red;
+}
+div#summary {
+    width: 50%;
+    height: auto;
+    display: inline-block;
+    float: left;
+    margin: 0 50px 0 20px;
+}
+#del i {
+    color: #cb7b50;
+}
+div#payment_details {
+    width: 40%;
+}
+#signUp_row input {
+    margin: 0;
+}
+#signUp h1 {
+	margin: 0;
+	font-size: 21px;
+}
+button.cancelbtn {
+    margin: 0;
+}
+.submitBtn button {
+    margin: 0;
+}
+p.msg {
+    margin: 6px 0;
+}
+#signUp label {
+    font-size: 14px;
+}

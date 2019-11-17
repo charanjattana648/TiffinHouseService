@@ -35,17 +35,17 @@ btn.onclick=function(){
   <form class="modal-content" method="post" action="index.php">
     <div class="container">
       <h1>Sign Up</h1>
-      <p>Please fill in this form to create an account.</p>
+      <p class="msg">Please fill in this form to create an account.</p>
       <hr>
       <select id="user_type_signUp" name="user_type_signUp">
       <option value="user">User</option>
       <option value="dealer">Dealer</option>
       </select>
       <p id="signUp_row">
-      <label for="fName"><b>First Name</b></label><br>
+      <label for="fName"><b>First Name</b></label>
       <input type="text" placeholder="Enter firstName" name="fName"  required>
       </p>  <p id="signUp_row">
-      <label for="lName"><b>Last Name</b></label><br>
+      <label for="lName"><b>Last Name</b></label>
       <input type="text" placeholder="Enter lastName" name="lName" required>
       </p>  <p id="signUp_row">
       <label for="email"><b>Email</b></label>
@@ -70,11 +70,11 @@ btn.onclick=function(){
       </p><p  id="compName">
       <label for="comp_Name"><b>Company Name</b></label>
       <input type="text" placeholder="Enter your company name" name="company_name" id="comp_Name" required>
-      <p>
+      <p class="submitBtn">
       <button type="submit" id="submit_signUp"  name="submitSU" class="signup">Sign Up</button>
 
       
-       <div class="container" style="background-color:#f1f1f1">
+       <div style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('signUp').style.display='none'" class="cancelbtn">Cancel</button>
      <!--  <span id="signIn_page"> SignIn</span>-->
     </div>
