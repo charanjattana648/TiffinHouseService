@@ -35,7 +35,7 @@ include("./views/login.php");
 		<div class="numbertext">'.$i.' / '.$count.'</div>
 		<img src="data:image/jpg;base64,'.base64_encode($dailyOffer->getItemImage()).'"/>
 		 <div class="tdeal_details"><p class="tdeal_price">$'.$dailyOffer->getItemPrice().'</p>
-		<p class="tdeal_name">'.$dailyOffer->getItemName().'</p>
+		<p class="tdeal_name" id="'.$dailyOffer->getCompanyName().'">'.$dailyOffer->getItemName().'</p>
 		   <div><button class="do_item" id="order_'.$itemName.'">Order Now</button></div>
 		</div>
 	  </div>';

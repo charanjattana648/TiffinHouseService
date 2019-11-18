@@ -17,7 +17,6 @@ public function __construct(){}
         $this->itemName= $itemName;
         $this->qty= $qty;
         $this->price= $price;
-        $this->itemTotalPrice= $itemTotalPrice;
         $this->companyName= $companyName;
     }
 

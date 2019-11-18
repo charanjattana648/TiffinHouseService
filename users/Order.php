@@ -158,22 +158,49 @@ echo '<div id="payment_details"><form method="POST" id="payment_form">
    </div>
    </div>
    <input type="submit" name="checkout" value="Continue to checkout" class="btn">
+   <input type="submit" name="checkout1" value="Continue to checkout1" class="btn">
 </form>
      </div>';
 ?>
 
 <?php
 //var_dump($_COOKIE);
-
+$date_old = '23-5-2016 23:15:23'; 
+//Date for database
+// if(isset($_POST['checkout1']))
+// {
+//   $today=new DateTime();
+//   $date = date('Y-m-d H:i:s');
+//   date_default_timezone_set('America/Vancouver');
+//   $today = new DateTime();
+//   $interval = new DateInterval('P1W');
+//   $today->add($interval);
+//   $exp_date=$today->format('Y-m-d H:i:s');
+//   if (stripos($cartItem['itemName'], "Weekly")===0 ) {
+//     echo "weekly found";
+//  }else if (stripos($cartItem['itemName'], "Monthly")===0) {
+//   echo "monthly found";
+//   }else{
+//    echo "not found";
+//  }
+// }
 if(isset($_POST['checkout']))
 {
+
   $personDetails=new OrderPersonDetails();
   $OrderedItem=new OrderedItemDetails();
+  $orderStatus=new OrderStatus();
+  $today=new DateTime();
+  $currDate=$today;
+  $date = date('Y-m-d H:i:s');
+  date_default_timezone_set('America/Vancouver');
+  $today = new DateTime();
   $paymentStatus="completed";
   if($_POST['paymentType']=="Cash")
   {
     $paymentStatus="pending";
   }
+
   if(isset($_SESSION['totalPrice']) && $_SESSION['totalPrice']!=0)
   {
   $personDetails->addData( $_POST['fullname'], $_POST['email'],$_POST['address'] ,
@@ -191,10 +218,28 @@ if(isset($_POST['checkout']))
     
         $cartItem=json_decode($val,true);
           echo $cartItem['itemName']."<br>";
-          // $cartItem['companyName'] change name
+          //doing
           $OrderedItem->addData($orderId,$cartItem['itemName'], $cartItem['qty'], $cartItem['price'],"Hunger Feed");
           $db::initialize("OrderedItemDetails");
-          $x=$db::addOrdereditemdetails($OrderedItem);
+          $itemId=$db::addOrdereditemdetails($OrderedItem);
+
+          if (stripos($cartItem['itemName'], "Weekly")===0 ) {
+            
+            $interval = new DateInterval('P1W');
+            $today->add($interval);
+            $exp_date=$today->format('Y-m-d H:i:s');
+            $orderStatus->addData($itemId, $orderId,$exp_date, $$currDate);
+            echo "weekly found";
+            //doing add table over here
+         }else if (stripos($cartItem['itemName'], "Monthly")===0) {
+            $interval = new DateInterval('P1M');
+            $today->add($interval);
+            $exp_date=$today->format('Y-m-d H:i:s');
+            $orderStatus->addData($itemId, $orderId,$exp_date, $$currDate);
+            echo "monthly found";
+          }
+          // $cartItem['companyName'] change name
+         
       }
     }
   }

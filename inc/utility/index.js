@@ -21,9 +21,12 @@ $(document).ready(function(){
         
       var price=  $(this).parent().prev().prev().html();
       var itemName=  $(this).parent().prev().html();
+      var companyName=  $(this).parent().prev().attr("id");
+      //tdeal_name
       itemObj.itemName=itemName;
       itemObj['qty']="1";
       itemObj['price']=price+"";
+      itemObj['companyName']=companyName;
       
 
         console.log(""+$(this).attr("id")+"---- "+JSON.stringify(itemObj));

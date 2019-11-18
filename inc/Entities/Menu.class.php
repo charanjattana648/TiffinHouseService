@@ -9,13 +9,15 @@ class Menu{
     private $ingredient;
     private $day;
     private $dayId;
+    private $companyName;
+
 
     public function __construct(  )
     {
     }
 
     public function saveMenu($itemName,$itemPrice,$itemImage,$itemDetail,
-    $ingredient,string $day,$dayId,$itemId=0)
+    $ingredient,string $day,$dayId,$companyName="",$itemId=0)
     {
         $this->itemId=$itemId;
         $this->itemName=$itemName;
@@ -25,7 +27,12 @@ class Menu{
         $this->ingredient=$ingredient;
         $this->day=$day;
         $this->dayId=$dayId;
-
+        $this->companyName=$companyName;
+        
+    }
+    public function getCompanyName()
+    {
+        return $this->companyName;
     }
     public function getItemId()
     {

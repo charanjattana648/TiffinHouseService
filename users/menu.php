@@ -12,7 +12,7 @@
 //require_once ("./inc/config.inc.php");
 require_once("../requireFiles.php");
 ?>
-<h2 class="menuHead">Company Name: <?php if(isset($_SESSION['companyName'])){echo $_SESSION['companyName']." ";}?>Menu</h2>
+<h2 class="menuHead">Company Name: <?php if(isset($_SESSION['companyName'])){echo $_SESSION['companyName']." ";}else{echo "Happy ";}?>Menu</h2>
 <?php
 
 
