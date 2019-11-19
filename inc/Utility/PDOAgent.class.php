@@ -78,7 +78,11 @@ public function execute($data=null)
         return $this->stmt->execute($data);
     }
 }
+public function resultSetByArr(){
+    $this->execute();
+    return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 
+}
 //Return the resultset (more than one record)
 public function resultSet()
 {

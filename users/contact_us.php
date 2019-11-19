@@ -1,9 +1,4 @@
 <?php
-// include ("./views/header.php");
-// include("./views/signUp.php");
-// include("./views/login.php");
-// require_once  ("inc/Utility/db.php");
-// require_once  ("inc/Entities/ContactUs.class.php");
 
 require_once("../requireFiles.php");
 
@@ -12,18 +7,15 @@ require_once("../requireFiles.php");
 	<div class="contact_div">
 		<h3>Contact Us</h3>
 		<form class="contact_form" action="contact_us.php" method="POST"> 
-		<select name="company_name">
+		<select class="company_name_select" name="company_name">
 		   <option value="admin">Tiffin House Service (Admin)</option>
 			<option value="happy">Happy</option>
+			<option value="happy">Hunger Feed</option>
 		</select><br>
-		<!--<label for="cfName">First Name:</label>-->
-		<input type="text" name="fName_cu" placeholder="Enter FirstName"/><br>
-		<!--<label for="cLName">Last Name:</label>-->
+		<input type="text" name="fName_cu" placeholder="Enter FirstName" /><br>
 		<input type="text" name="lName_cu" placeholder="Enter LastName"/><br>
-		<!--<label for="cEmail">Email:</label>-->
-		<input type="email" name="email_cu" placeholder="Enter Email"/><br>
-		<!--<label for="cMessage">Message:</label>-->
-		<textarea id="cMessage" name="message_cu"  rows="8" placeholder="Enter Message"></textarea><br>
+		<input type="email" id="email_cu" name="email_cu" placeholder="Enter Email" required/><br>
+		<textarea id="cMessage" name="message_cu"  rows="8" placeholder="Enter Message" required></textarea><br>
 		<button type="submit" name="submit_message" id="sendBtn_cu">Send</button> 
 		<button type="reset" id="refresh_cu">Reset</button>
 		</form>
@@ -34,15 +26,19 @@ require_once("../requireFiles.php");
 	
 	</article>
 	<?php
+
+	
 	if(isset($_POST['submit_message']))
 	{
+		echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
+		echo '<script src="../inc/controller/contact_us.js"></script>';
 		extract($_REQUEST);  
 		$db=new database();
 		$db::initialize("ContactUs");
 		// $now = new DateTime();
         // echo $now->format('Y-m-d H:i:s'); 
 		$date=date('Y-m-d H:i:s');
-		echo $date;
+		//echo $date;
 		$contactUs=new ContactUs();
 		$contactUs->setData($_POST['company_name'],$_POST['fName_cu'],$_POST['lName_cu'],$_POST['email_cu'],
 		$_POST['message_cu'],date('Y-m-d H:i:s'));

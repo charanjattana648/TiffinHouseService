@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 
     console.log("ready ")
-    $("button").click(function(){
+    $("button.do_item").click(function(){
         var itemObj={};
         
       var price=  $(this).parent().prev().prev().html();

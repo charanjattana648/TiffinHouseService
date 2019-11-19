@@ -91,7 +91,7 @@ include("./views/login.php");
 		$itemName = preg_replace('/\s/', '',$com_detail->getCompanyName());		
 	echo '<article class="dealer_article">
 		<div class="dealer_imageM">
-		<a href="./users/MealPlan.php?name='.$com_detail->getCompanyName().'" id="'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
+		<a href="./users/MealPlan.php?cname='.$com_detail->getCompanyName().'" id="'.$itemName.'"><img src="data:image/jpg;base64,'.base64_encode($com_detail->getCompanyImage()).'"/> </a>
    		</div>
 		<div class="dealer_selMenu">
 		<h2>'.$com_detail->getCompanyName().'</h2>		

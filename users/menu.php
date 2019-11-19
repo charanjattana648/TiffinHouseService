@@ -12,13 +12,19 @@
 //require_once ("./inc/config.inc.php");
 require_once("../requireFiles.php");
 ?>
-<h2 class="menuHead">Company Name: <?php if(isset($_SESSION['companyName'])){echo $_SESSION['companyName']." ";}else{echo "Happy ";}?>Menu</h2>
+<h2 class="menuHead">Company Name: <?php if(isset($_GET['cname'])){echo $_GET['cname']." ";}else{echo "Happy ";}?>Menu</h2>
 <?php
 
 
 $db=new database();
 $db::initialize("Menu");
-$menu=$db::getMeal();
+$menu="";
+if(isset($_GET['cname']))
+{ 
+  $menu=$db::getMeal($_GET['cname']);
+}else{
+$menu=$db::getMeal("Happy");
+}
 // $x=count($menu);   
 $days=array();
 $isNewDay=true;
@@ -80,18 +86,8 @@ echo'</ul>
 </section>
 </section>';
 }
-echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script> 
-$(document).ready(function(){
- 
-  $("section.vegMenu").hide();
-$("a#menu_items").click(function(event){
-  var itemName=$(this).attr("href");
-  $("section.vegMenu").hide();
-  itemName=itemName.replace(" ","");
-$("section"+itemName).show();
-})})
-</script>';
+echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
+
 echo '<script src="../inc/controller/menu.js"></script>'
 ?>
 

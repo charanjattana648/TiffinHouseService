@@ -2,14 +2,22 @@ var qty=document.getElementById("qty_item");
 var btn_menu_item=document.getElementsByName("mi_to_cart");
 $(document).ready(function(){
 
-    //$("a.menu_ul").click(function(){
-        // $("div.head_bottom").hover(function(){
-        //     console.log("hello");
-        // })
-
+    $("section.vegMenu").hide();
+    $("a#menu_items").click(function(event){
+      var itemName=$(this).attr("href");
+      $("section.vegMenu").hide();
+      itemName=itemName.replace(" ","");
+    $("section"+itemName).show();
+    });
     console.log("ready")
     $("button.mi_to_cart").click(function(){
         var qty=$(this).prev().val();
+        if(Number(qty)<=0)
+        {
+            alert("Please add Quantity!!")
+            return;
+
+        }
         var item_id=$(this).attr("id");
         id=item_id.split("_");
         var item_name="";
@@ -48,12 +56,21 @@ $(document).ready(function(){
 
     $("button#mealPlan_cart").click(function(){        
         console.log("add to cart");
-       
+        var qty=$(this).parent().prev().val();
+        if(qty=="" || Number(qty)<=0)
+        {
+            alert("Please add Quantity!!");
+            return false;
+        }else if (Number(qty)>100)
+        {
+            alert("Please contact admin for large order than 100 Items!!");
+            return false;
+        }
         var companyName=$("h1#mealplan_heading").text();
         var sType=$(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
         var tiffinType=$(this).parent().prev().prev().prev().prev().prev().text();
         var item_name=sType+"_"+tiffinType;
-        var qty=$(this).parent().prev().val();
+        
         var price=$(this).parent().prev().prev().prev().prev().text();
        // var price=$(this).parent().find(".price").text();
     

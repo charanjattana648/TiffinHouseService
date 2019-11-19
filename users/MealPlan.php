@@ -15,14 +15,14 @@ require_once("../requireFiles.php");
 <?php 
 $db=new database();
 $db::initialize("MealPlan");
-if(isset($_GET['name']))
+if(isset($_GET['cname']))
 {
-    $meal_plan=$db::getTiffinPlan($_GET['name']); 
+    $meal_plan=$db::getTiffinPlan($_GET['cname']); 
 }else{
     $meal_plan=$db::getTiffinPlan("Tiffin House"); 
 }
 ?>
-<h1 id="mealplan_heading"><?php if(isset($_GET['name'])){echo $_GET['name'] ; 
+<h1 id="mealplan_heading"><?php if(isset($_GET['cname'])){echo $_GET['cname'] ; 
 }else{echo "Happy";}?></h1>
 <h2 style="text-align:center">Subscribe your Plan</h2>
 

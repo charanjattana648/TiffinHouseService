@@ -56,19 +56,43 @@
 			?>
 			<li><a href="http://localhost/dealers/menu_dealer.php" >Menu</a></li>
 			 
-			<li><a href="dealers/Order.php" >Order</a></li>
+			<li><a href="http://localhost/dealers/menu_order.php" >Order</a></li>
 			<li><a href="http://localhost/dealers/about_us_dealer.php" >About us</a>
 			
 			</li>			
 			<li><a href="http://localhost/dealers/contact_us_dealer.php" >Contact us</a></li>
 			<li><a href="http://localhost/dealers/companyProfile.php" >Company Profile</a></li>
 			<?php }else{
-			echo '<li ><a id="menu_ul" href="http://localhost/users/menu.php">Menu</a></li>
+
+				$db=new database();
+				$db::initialize("Menu");
+				$companiesName=$db->getMealCompanyNames();
+				//echo $x;
+			echo '<li class="menuUser"><a id="menu_ul" href="">Menu</a>
+			
+				<ul class="menuHover">';
+				//var_dump($companiesName);
+				for($i=0;$i<count($companiesName);$i++)
+				{
+					echo '<li><a href="http://localhost/users/menu.php?cname='.$companiesName[$i]["companyName"].'">'.$companiesName[$i]["companyName"].'</a></li>';
+				}
+				echo '</ul>
+			
+			</li>
 			<li><a href="http://localhost/users/Order.php" >Order</a></li>
 			<li><a href="http://localhost/users/about_us.php" >About us</a></li>			
 			<li><a href="http://localhost/users/contact_us.php" >Contact us</a></li>
-			<li><a href="http://localhost/users/MealPlan.php" >Plan Meal</a></li>';
+			<li class="planMeal"><a href="" >Plan Meal</a>
+			
+			<ul class="planUser">';
+				//var_dump($companiesName);
+				for($i=0;$i<count($companiesName);$i++)
+				{
+					echo '<li><a href="http://localhost/users/MealPlan.php?cname='.$companiesName[$i]["companyName"].'">'.$companiesName[$i]["companyName"].'</a></li>';
+			
+			    }
 			}?>
 		
 			</ul></nav></div>
+			<script src="../inc/controller/header.js"></script>
 	</header>

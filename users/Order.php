@@ -1,4 +1,5 @@
-<?php         
+<?php      
+ob_start();   
 // require_once("inc/config.inc.php");
 // include ("./views/header.php");
 // include("./views/signUp.php");
@@ -208,7 +209,7 @@ if(isset($_POST['checkout']))
    $db=new database();
    $db::initialize("OrderPersonDetails");
    $orderId=$db::addOrderpersondetails($personDetails);
-
+    echo "<script> alert('".$orderId."')</script>";
    //adding item to table
    if( $orderId!="")
    {
@@ -219,7 +220,7 @@ if(isset($_POST['checkout']))
         $cartItem=json_decode($val,true);
           echo $cartItem['itemName']."<br>";
           //doing
-          $OrderedItem->addData($orderId,$cartItem['itemName'], $cartItem['qty'], $cartItem['price'],"Hunger Feed");
+          $OrderedItem->addData($orderId,$cartItem['itemName'], $cartItem['qty'], $cartItem['price'],$cartItem['companyName']);
           $db::initialize("OrderedItemDetails");
           $itemId=$db::addOrdereditemdetails($OrderedItem);
 
@@ -227,30 +228,31 @@ if(isset($_POST['checkout']))
             
             $interval = new DateInterval('P1W');
             $today->add($interval);
-            $exp_date=$today->format('Y-m-d H:i:s');
-            $orderStatus->addData($itemId, $orderId,$exp_date, $$currDate);
+            $exp_date=$today->format('Y-m-d H:i:s');//$date->format('Y-m-d H:i:s');
+            $orderStatus->addData($itemId, $orderId,$exp_date, $currDate->format('Y-m-d H:i:s'));
+            $db::addOrderStatus($orderStatus);
             echo "weekly found";
             //doing add table over here
          }else if (stripos($cartItem['itemName'], "Monthly")===0) {
             $interval = new DateInterval('P1M');
             $today->add($interval);
             $exp_date=$today->format('Y-m-d H:i:s');
-            $orderStatus->addData($itemId, $orderId,$exp_date, $$currDate);
+            $orderStatus->addData($itemId, $orderId,$exp_date, $currDate->format('Y-m-d H:i:s'));
+            $db::addOrderStatus($orderStatus);
             echo "monthly found";
           }
+          $order->emptyCart();
           // $cartItem['companyName'] change name
          
       }
     }
   }
    
-   echo "<script> alert('". $orderId."'); </script>";
-  
+   }  
   }else{
     echo "<script> alert('You don't have any Items to Pay'); </script>";
   }
 
-}
 
 
 ?>

@@ -53,6 +53,24 @@ class database{
             echo "Error : ".$err->getMessage();
         }
     }
+
+      /**getmeal by name for search function in future */
+      public static function getMealCompanyNames()
+      {
+          
+          $search_names_query="SELECT DISTINCT companyName FROM TiffinHouseDb.Dealer";            
+          
+          try{
+              $menu=new Menu();
+              self::$db->query($search_names_query);       
+              self::$db->execute();
+              $menu=self::$db->resultSetByArr();
+              return $menu;
+          }catch(PDOException $err)
+          {
+              echo "Error : ".$err->getMessage();
+          }
+      }
 /**Add meal */
     public static function addMeal(Menu $menu)
     {
@@ -142,7 +160,6 @@ class database{
       /**function for Contact us message from user  */
       public static function getMessage(string $messageTo)
       {
-          echo "message to : ".$messageTo;
           $message_query="SELECT * FROM TiffinHouseDb.contactus where messageTo=:messageTo order by dateTime desc";
           try{
               self::$db->query($message_query);
@@ -442,17 +459,19 @@ public static function deleteMealPlan($companyName,$tiffinType,$subscriptionType
 /**Add ordereditemdetails */
 public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
 {
-    $orderedItems_add_query="INSERT INTO TiffinHouseDb.Ordereditemdetails (orderId,itemName,qty, price,itemTotalPrice,companyName)
-     VALUES (:orderId, :itemName,:qty, :price,:itemTotalPrice,:companyName)";
+    $orderedItems_add_query="INSERT INTO TiffinHouseDb.Ordereditemdetails (orderId,itemName,qty, price,companyName)
+     VALUES (:orderId, :itemName,:qty, :price,:companyName)";
      try{
          self::$db->query($orderedItems_add_query);
          self::$db->bind(':orderId',$ordereditems->getOrderId());
          self::$db->bind(':itemName',$ordereditems->getItemName());
          self::$db->bind(':qty',$ordereditems->getQty());
          self::$db->bind(':price',$ordereditems->getPrice());
-         self::$db->bind(':itemTotalPrice',$ordereditems->getItemTotalPrice());
+        //  self::$db->bind(':itemTotalPrice',$ordereditems->getItemTotalPrice());
          self::$db->bind(':companyName',$ordereditems->getCompanyName());
-         self::$db->execute();
+         self::$db->execute();         
+         $itemId=self::$db->lastInsertedId();
+         return $itemId;
      }catch(PDOException $err)
      {
         echo "Error : ".$err->getMessage();
@@ -462,8 +481,8 @@ public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
 //`zip`, `shippingOption`, `paymentType`, `tax`, `totalPrice`, `paymentStatus`)
 public static function addOrderpersondetails(Orderpersondetails $persondetails)
 {
-    $persondetails_add_query="INSERT INTO TiffinHouseDb.Orderpersondetails (name,email,address,city,state,zip,shippingOption,paymentType,tax,totalPrice,paymentStatus)
-     VALUES (:name,:email,:address,:city,:state,:zip,:shippingOption,:paymentType,:tax,:totalPrice,:paymentStatus)";
+    $persondetails_add_query="INSERT INTO TiffinHouseDb.Orderpersondetails (name,email,address,city,state,zip,shippingOption,paymentType,tax,totalPrice,paymentStatus,isCompleted)
+     VALUES (:name,:email,:address,:city,:state,:zip,:shippingOption,:paymentType,:tax,:totalPrice,:paymentStatus,:isCompleted)";
      try{
          self::$db->query($persondetails_add_query);
          self::$db->bind(':name',$persondetails->getName());
@@ -477,8 +496,9 @@ public static function addOrderpersondetails(Orderpersondetails $persondetails)
          self::$db->bind(':tax',$persondetails->getTax());
          self::$db->bind(':totalPrice',$persondetails->getTotalPrice());
          self::$db->bind(':paymentStatus',$persondetails->getPaymentStatus());
-         $orderId=self::$db->execute();
-         echo $orderId;
+         self::$db->bind(':isCompleted',$persondetails->getIsCompleted());
+         self::$db->execute();
+         $orderId=self::$db->lastInsertedId();
          return $orderId;
      }catch(PDOException $err)
      {
@@ -486,19 +506,85 @@ public static function addOrderpersondetails(Orderpersondetails $persondetails)
      }
 }
 
-
-
-
-
-
-
-
+public static function setOrderCompleted($orderId)
+{
+    $persondetails_add_query="UPDATE TiffinHouseDb.Orderpersondetails SET isCompleted='completed' WHERE orderId=:orderId";
+     try{
+         self::$db->query($persondetails_add_query);
+         //self::$db->bind(':isCompleted',"completed");         
+        self::$db->bind(':orderId',$orderId);
+         self::$db->execute();
+     }catch(PDOException $err)
+     {
+        echo "Error : ".$err->getMessage();
+     }
 }
 
+/**Add meal *///($itemId, $orderId,$exp_date,$currDate,$isActive=1)
+public static function addOrderStatus(OrderStatus $orderStatus)
+{
+    $orderstatus_add_query="INSERT INTO TiffinHouseDb.OrderStatus (itemId, orderId, ExpDate, currDate, isActive)
+     VALUES (:itemId,:orderId,:expDate,:currDate,:isActive)";
+     try{
+         self::$db->query($orderstatus_add_query);
+         self::$db->bind(':itemId',$orderStatus->getItemId());
+         self::$db->bind(':orderId',$orderStatus->getOrderId());
+         self::$db->bind(':expDate',$orderStatus->getExpDate());
+         self::$db->bind(':currDate',$orderStatus->getCurrDate());
+         self::$db->bind(':isActive',$orderStatus->getIsActive());
+         self::$db->execute();
+     }catch(PDOException $err)
+     {
+        echo "<script> console.log('Error : '".$err->getMessage().")<script>";
+     }
+}
 
+public static function getOrderStatus($itemId,$orderId)
+{
+    $get_orderstatus_query="SELECT * FROM TiffinHouseDb.OrderStatus WHERE itemId=:itemId AND orderId=:orderId";
+    try{
+        self::$db->query($get_orderstatus_query);
+        self::$db->bind(':itemId',$itemId);
+        self::$db->bind(':orderId',$orderId);
+        self::$db->execute();
+        $orderStatus=self::$db->resultSet();
+        return $orderStatus;
+    }catch(PDOException $err)
+    {
+        echo "<script> console.log('Error : '".$err->getMessage().")<script>";
+    }
+}
 
+public static function getOrderpersondetails($orderId)
+{
+  $get_persondetails_query="SELECT * FROM TiffinHouseDb.Orderpersondetails WHERE orderId=:orderId AND 	isCompleted!='completed'";
+    try{
+        self::$db->query($get_persondetails_query);
+        self::$db->bind(':orderId',$orderId);
+        self::$db->execute();
+        $persondetails=self::$db->resultSet();
+        return $persondetails;
+    }catch(PDOException $err)
+    {
+        echo "<script> console.log('Error : '".$err->getMessage().")<script>";
+    }
+}
 
+public static function getOrdereditemdetails($companyName)
+{
+  $get_orderedItems_query="SELECT * FROM TiffinHouseDb.ordereditemdetails WHERE companyName=:companyName ORDER BY orderId desc";
+    try{
+        self::$db->query($get_orderedItems_query);
+        self::$db->bind(':companyName',$companyName);
+        self::$db->execute();
+        $orderedItems=self::$db->resultSet();
+        return $orderedItems;
+    }catch(PDOException $err)
+    {
+        echo "<script> console.log('Error : '".$err->getMessage().")<script>";
+    }
+}
 
-
+}
 
 ?>

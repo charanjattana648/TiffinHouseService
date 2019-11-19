@@ -60,9 +60,10 @@ body{
 
 /* Slideshow container */
 .dailyDeals_slideshow {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    /* z-index: -9; */
 }
 
 /* Hide the images by default */
@@ -232,7 +233,7 @@ form.login_form{
 	position : absolute;
 	top : 110px;
 	height : 500px;
-	z-index : -1;
+	/* z-index : -1; */
 	left: 0px;
 	width: 100%;
 }
@@ -341,7 +342,7 @@ section.righttext p{
 			  margin-top: 95px;
 			}
 		.menutable img:hover{
-			  z-index: 1;
+			  /* z-index: 1; */
 			  background-color: black;
 			  opacity: 0.2;
 			}
@@ -990,12 +991,12 @@ a#menu_items {
 p.price {
     text-align: center !important;
 }
-#weekly_div p {
+#weekly_div p,#monthly_div p {
     text-align: left;
     padding: 0 9px;
 }
 
-#weekly_div label {
+#weekly_div label,#monthly_div label {
     margin-bottom: 10px;
     display: inline-block;
     width: 42%;
@@ -1003,11 +1004,11 @@ p.price {
     text-align: right;
 }
 
- #weekly_div input#tiff_qty {
+ #weekly_div input#tiff_qty, #monthly_div input#tiff_qty {
     width: 25%;
     height: 32px;
 }
-#weekly_div .card button {
+#weekly_div .card button,  #monthly_div .card button{
     margin: 0;
 }
 .righttext h1 {
@@ -1084,4 +1085,54 @@ p.msg {
 }
 #signUp label {
     font-size: 14px;
+}
+ul.menuHover, ul.planUser {
+    display: inline-block;
+    position: absolute;
+    padding: 10px 20px;
+    margin: 0;
+    top: 34px;
+    left: 0px;
+    background: #ccc;
+	width: 170px;	
+	display: none;
+}
+.menuHover li, .planUser li {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left;
+    font-size: 13px;
+    line-height: 25px;
+}
+.menuUser, .planMeal {
+	position: relative;
+}
+ul.planUser {
+    left: -50px;
+	width: 148px;
+}
+li.menuUser {
+    padding: 15px 0 !IMPORTANT;
+}
+li.planMeal {
+    padding: 15px 0 !IMPORTANT;
+}
+table#itemTable {
+    width: 50%;
+    margin: 25px 0 40px 0;
+    /* background-color: white; */
+    float: left;
+}
+#itemTable th {
+    border: none;
+    box-sizing: border-box;
+    background: #e3795a;
+}
+input#myCheck {
+    margin-top: 25px;
+}
+label.completed {
+    margin: 0 20px 0 20px;
+    display: inline;
 }
