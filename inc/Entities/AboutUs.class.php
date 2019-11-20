@@ -1,4 +1,8 @@
 <?php
+/**
+*  $companyName name of the company 
+*  $aboutCompany description of company
+*/
 class AboutUs{
     private $companyName;
     private	$aboutCompany;
