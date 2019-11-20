@@ -1,4 +1,7 @@
 <?php
+/**
+* getter setter for contactUs entity class with messageId,firstNmae,LastNmae,userEmail,message,dateTime and messageTo attributes.
+*/
 class ContactUs{
     private $messageId;
     private	$firstName;
