@@ -1,4 +1,8 @@
 <?php
+/**
+* Dealer class 
+* getter setter for dealer class with $companyName,$isverified,$firstName,$lastName,$userEmail,$password,$phoneNumber,$address,$postalCode attributes.
+*/
 class Dealer{
    // {
     private $companyName;
