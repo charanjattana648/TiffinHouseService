@@ -1,6 +1,9 @@
 <?php
+/**
+* getter setter for OrderItemDetails entity class with $itemId, $orderId	$itemName	$qty	$price	$itemTotalPrice	$companyName attributes that describe about items that user has ordered.
+*/
 class OrderedItemDetails{
-//$itemId, $orderId	$itemName	$qty	$price	$itemTotalPrice	$companyName
+
 private $itemId;
 private $orderId;
 private $itemName;
