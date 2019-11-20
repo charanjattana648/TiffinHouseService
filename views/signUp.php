@@ -1,4 +1,4 @@
-
+<?php ob_start();?>
 <script>
 // Get the modal
 var modal = document.getElementById('signUp');
@@ -32,7 +32,7 @@ btn.onclick=function(){
 <div id="signUp" class="modal">
   <span onclick="document.getElementById('signUp').style.display='none'" class="close" title="Close Modal"></span>
   
-  <form class="modal-content" method="post" action="index.php">
+  <form class="modal-content" method="post" id="signUp_form" action="./views/signUp_Login.php">
     <div class="container">
       <h1>Sign Up</h1>
       <p class="msg">Please fill in this form to create an account.</p>
@@ -69,9 +69,9 @@ btn.onclick=function(){
       <input type="password" placeholder="Repeat Password" name="psw_repeat_signUp" id="psw_repeat_signUp" required>
       </p><p  id="compName">
       <label for="comp_Name"><b>Company Name</b></label>
-      <input type="text" placeholder="Enter your company name" name="company_name" id="comp_Name" required>
+      <input type="text" placeholder="Enter your company name" name="company_name" id="comp_Name"></p>
       <p class="submitBtn">
-      <button type="submit" id="submit_signUp"  name="submitSU" class="signup">Sign Up</button>
+      <button type="submit" id="submit_signUp"  name="submitSU" class="signup">Sign Up</button></p>
 
       
        <div style="background-color:#f1f1f1">
@@ -81,7 +81,8 @@ btn.onclick=function(){
       
     </div>
   </form>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../inc/controller/signUp_validation.js"> </script>
 </div>
 <?php
@@ -94,31 +95,5 @@ btn.onclick=function(){
 // require_once  ("./inc/Entities/User.class.php");
 // require_once  ("./inc/Entities/Dealer.class.php");
 // require_once  ("./inc/Utility/auth.php");
-  if(isset($_POST['submitSU']))
-  {
-	
-    if($_POST['user_type_signUp']=='dealer')
-  	{
-      $auth=new Auth("Dealer"); 
-    echo "signUp with ".$_POST['email_signUp'];
-
-		$dealer=new Dealer();
-    $dealer->setData($_POST['fName'],$_POST['lName'],$_POST['email_signUp'],$_POST['psw_signUp'],$_POST['pNumber'],$_POST['address'],$_POST['pCode']);
-    $dealer->setCompanyName($_POST['company_name']);
-    //  initialize     
-    $auth::initialize("Dealer");
-		$auth::add_dealer($dealer,"Dealer");
-	}else{
-    
-    $auth=new Auth("User"); 
-    echo "signUp with ".$_POST['email_signUp'];
-
-		$user=new User();
-    $user->setData($_POST['fName'],$_POST['lName'],$_POST['email_signUp'],$_POST['psw_signUp'],$_POST['pNumber'],$_POST['address'],$_POST['pCode']);
-    //  initialize     
-    $auth::initialize("User");
-		$auth::add_user($user,"User");
-
-  }
-}
+ 
   ?>

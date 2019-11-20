@@ -151,9 +151,11 @@ class database{
             self::$db->bind(':message',$contactUs->getMessage());
             self::$db->bind(':dateTime',$contactUs->getDateTime());
             self::$db->execute();
+            return 1;
         }catch(PDOException $err)
         {
-           echo "Error : ".$err->getMessage();
+           "Error : ".$err->getMessage();
+           return -1;
         }
     }
 

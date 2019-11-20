@@ -36,7 +36,8 @@ public static function add_user(User $new_user,string $type)
 		return($userId);
 	}catch(PDOException $e)
 	{
-		echo $e->getMessage();
+		$e->getMessage();
+		return -1;
 	}	
 }
 
