@@ -1,5 +1,5 @@
 <?php
-//companyName	phoneNumber	email	address	city	Province	country	postalCode	companyImage
+//getter setter for company profile entity class with companyName	phoneNumber	email	address	city	Province	country	postalCode	companyImage attributes
 
 class CompanyProfile{
     private $companyName;
