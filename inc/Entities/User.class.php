@@ -1,4 +1,7 @@
 <?php
+/**
+* getter setter for User Entity class with $firstName,$lastName,$userEmail,$password,$phoneNumber,$address,$postalCode attributes 
+*/
 class User{
     private $firstName;
     private $lastName;
