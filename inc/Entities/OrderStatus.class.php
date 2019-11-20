@@ -1,4 +1,7 @@
 <?php
+/**
+* getter setter for orderstatus entity class with $itemId, $orderId,$expDate,$currDate,$isActive attributes
+*/
 class OrderStatus{
     private $itemId;
     private $orderId;
