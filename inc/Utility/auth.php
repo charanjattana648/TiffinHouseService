@@ -9,7 +9,13 @@ class Auth{
 	{
 		self::$db=new PDOAgent($className);
 	}
-
+/**
+* 
+* @param undefined $new_user  add user's information in user table
+* @param undefined $type type of user(dealer,user)
+* 
+* @return user id
+*/
 public static function add_user(User $new_user,string $type)
 {
 	$insert_user_query="INSERT INTO TiffinHouseDb.USER(firstName,lastName,userEmail,password,phoneNumber,address,postalCode) 
@@ -34,7 +40,13 @@ public static function add_user(User $new_user,string $type)
 	}	
 }
 
-
+/**
+* 
+* @param undefined $new_dealer add dealer's information in dealer table
+* @param undefined $type check type of user(user,dealer)
+* 
+* @return dealers id
+*/
 public static function add_dealer(Dealer $new_dealer,string $type)
 {
 	$insert_user_query="INSERT INTO TiffinHouseDb.$type(firstName,lastName,userEmail,password,phoneNumber,address,postalCode,companyName, isVerified) 
@@ -60,7 +72,14 @@ public static function add_dealer(Dealer $new_dealer,string $type)
 		echo $e->getMessage();
 	}	
 }
-
+/**
+* 
+* @param undefined $userEmail match useremail
+* @param undefined $pass  match password of user
+* @param undefined $type  check type(dealer or user) for signin
+* 
+* @return user data
+*/
 
 public static function signIn_user($userEmail,$pass,$type) 
 {	
