@@ -1,4 +1,7 @@
 <?php
+/**
+* getter setter for MealPlan entity class with  $companyName,$tiffinType,$price,$tiffinDescription,$subscriptionType attributes
+*/
 class MealPlan{
     private $companyName;
     private $tiffinType;
