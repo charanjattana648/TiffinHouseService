@@ -1,7 +1,11 @@
 <?php
+/**
+* getter setter for OrderPersonDetails entity class
+* with orderId	name,emailaddress, city, state, zip,shippingOption,	paymentType,tax,totalPrice,	paymentStatus attributes
+* details about order of user
+*/
 
 
-//orderId	name	email	address	city	state	zip	shippingOption	paymentType	tax	totalPrice	paymentStatus
 class OrderPersonDetails{
     private $name;
     private $email;
