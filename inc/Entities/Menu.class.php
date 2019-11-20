@@ -1,4 +1,8 @@
 <?php
+/**
+* getter setter for menu entity class 
+* detailed information about menu with $itemName,$itemPrice,$itemImage,$itemDetail,$ingredient,string $day,$dayId,$companyName,$itemId attributes.
+*/
 class Menu{
     
     private $itemId;
@@ -11,7 +15,11 @@ class Menu{
     private $dayId;
     private $companyName;
 
-
+/**
+* 
+* 
+* @return  empty constructor
+*/
     public function __construct(  )
     {
     }
