@@ -188,7 +188,7 @@ class database{
                 echo "Error : ".$err->getMessage();
             }
       }
-        /**adding company detail in about page */
+        /**updating company detail in about page */
         public static function updateAboutCompany(string $companyName,string $about)
         {
             $add_about_company_query="UPDATE TiffinHouseDb.about SET aboutCompany=:about 
@@ -246,7 +246,7 @@ class database{
                echo "Error : ".$err->getMessage();
            }
       }
-
+   /**update company detail */
       public static function updateCompanyDetail(CompanyProfile $cProfile)
       {
           $update_company_profile_query="UPDATE TiffinHouseDb.contactdetail SET phoneNumber=:phoneNumber ,email=:email, address=:address, city=:city, 
@@ -276,7 +276,7 @@ class database{
                echo "Error : ".$err->getMessage();
            }
       }
-
+      /**get company contact detail */
       public static function getCompanyDetail(string $companyName="")
       {
           $get_company_profile_query="SELECT * FROM TiffinHouseDb.contactdetail WHERE companyName=:companyName";
@@ -479,6 +479,7 @@ public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
 }
 //INSERT INTO `orderpersondetails`(`orderId`, `name`, `email`, `address`, `city`, `state`, 
 //`zip`, `shippingOption`, `paymentType`, `tax`, `totalPrice`, `paymentStatus`)
+/**Add personal details and order details*/
 public static function addOrderpersondetails(Orderpersondetails $persondetails)
 {
     $persondetails_add_query="INSERT INTO TiffinHouseDb.Orderpersondetails (name,email,address,city,state,zip,shippingOption,paymentType,tax,totalPrice,paymentStatus,isCompleted)
@@ -505,7 +506,7 @@ public static function addOrderpersondetails(Orderpersondetails $persondetails)
         echo "Error : ".$err->getMessage();
      }
 }
-
+/**set order status */
 public static function setOrderCompleted($orderId)
 {
     $persondetails_add_query="UPDATE TiffinHouseDb.Orderpersondetails SET isCompleted='completed' WHERE orderId=:orderId";
@@ -538,7 +539,7 @@ public static function addOrderStatus(OrderStatus $orderStatus)
         echo "<script> console.log('Error : '".$err->getMessage().")<script>";
      }
 }
-
+  /**show order details and order status */
 public static function getOrderStatus($itemId,$orderId)
 {
     $get_orderstatus_query="SELECT * FROM TiffinHouseDb.OrderStatus WHERE itemId=:itemId AND orderId=:orderId";
@@ -554,7 +555,7 @@ public static function getOrderStatus($itemId,$orderId)
         echo "<script> console.log('Error : '".$err->getMessage().")<script>";
     }
 }
-
+   /**show personal details of person */
 public static function getOrderpersondetails($orderId)
 {
   $get_persondetails_query="SELECT * FROM TiffinHouseDb.Orderpersondetails WHERE orderId=:orderId AND 	isCompleted!='completed'";
@@ -569,7 +570,7 @@ public static function getOrderpersondetails($orderId)
         echo "<script> console.log('Error : '".$err->getMessage().")<script>";
     }
 }
-
+  /**show details of items that person ordered */
 public static function getOrdereditemdetails($companyName)
 {
   $get_orderedItems_query="SELECT * FROM TiffinHouseDb.ordereditemdetails WHERE companyName=:companyName ORDER BY orderId desc";
