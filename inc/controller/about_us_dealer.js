@@ -1,6 +1,8 @@
 var company_Name=document.getElementById("company_Name");
 var about_Company=document.getElementById("about_Company");
 
+/** validating whether company name is selected or not and whether some information about company is added or not before adding or editing information*/
+
 function validateAboutUsData()
 {
     if(company_Name.value=="")
@@ -21,7 +23,7 @@ document.getElementById("add_aboutUs").onclick=function(){
 document.getElementById("update_aboutUs").onclick=function(){
     validateAboutUsData();
 }
-
+/** after validating when document is ready ,the information is added or edited */
 $(document).ready(function(){
     $("a.edit_aboutUs").click(function(){
         
