@@ -13,6 +13,7 @@ var btn_add=document.getElementById("add_Profile");
 var btn_update=document.getElementById("update_Profile");
 var btn_delete=document.getElementById("delete_Profile");
 
+/** validate fields are empty or not*/
 function validateCompanyProfile()
 {
     if(companyName.value=="")
@@ -42,7 +43,7 @@ function validateCompanyProfile()
         throw "please add postalCode.";
     }
 }
-
+/** function to add image of company*/
 function add_company_profile(){
     try{
        validateDealerMenu();
@@ -67,10 +68,13 @@ function add_company_profile(){
         return false;
     }
 }
+/**function to add ingredients of menu*/
 btn_add.onclick=function(){
     add_Ingredient();
     return false;
 };
+
+/**function to update ingredients of menu*/
 btn_update.onclick=function(){
     try{
         validateDealerMenu();
@@ -79,6 +83,7 @@ btn_update.onclick=function(){
          return false;
      }
  };
+ /**function to delete ingredients of menu*/
 btn_delete.onclick=function(){
     try{
      if(companyName.value=="")
@@ -95,6 +100,7 @@ btn_delete.onclick=function(){
 //     console.log("hello click click");  
 // }
 
+/** after validating create company profile*/
 $(document).ready(function(){
     console.log("hello jquery");
     $("a.edit_cprofile").click(function(){
