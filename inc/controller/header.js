@@ -16,5 +16,4 @@ $(document).ready(function(){
     $("li.menuUser").mouseleave(function(){
         $("ul.menuHover").slideUp();
     });
-
 })

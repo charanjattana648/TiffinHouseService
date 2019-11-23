@@ -9,7 +9,7 @@ if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==TRUE && $_SESSION['Us
 <?php
 
 $db=new database();
-$_SESSION['company_name']="Hunger Feed";
+//$_SESSION['company_name']="Hunger Feed";
 $db::initialize("OrderedItemDetails");
 if(isset($_SESSION['company_name']))
 {
@@ -20,13 +20,16 @@ $oId="";
 $oldId="";
 $isDifferentOrder=false;
 $istableExist=false;
+$_SESSION['notcompleted']=0;
 foreach($orderedItems as $items)
 {  
+    global $notcompleted;
    $itemId=$items->getItemId();
    $orderId=$items->getOrderId();
    $db::initialize("OrderPersonDetails");
    $persondetails_array=$db::getOrderpersondetails($orderId);
    $notcompleted=count($persondetails_array);
+   $_SESSION['notcompleted']=$notcompleted;
    if($notcompleted!=0){
 
    $isDifferentOrder=false;
@@ -41,7 +44,7 @@ foreach($orderedItems as $items)
         <input type='submit' id='btnOrderCompleted' name='btnorderCompleted' value='Order Completed' /></form>
         </div>";}
 
-       echo "<div><h2> Person Details</h2></div><table><tr><th>Name</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th><th>Shipping Option</th>
+       echo "<div><h2 class='p_detail'> Person Details</h2></div><table><tr><th>Name</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th><th>Shipping Option</th>
        <th>Tax</th><th>Total Price</th><th>Payment Type</th><th>Payment Status</th><th>Order Id</th><th>isCompleted</th></tr>";
    
     foreach($persondetails_array as $persondetails){
@@ -60,7 +63,7 @@ foreach($orderedItems as $items)
     if($isDifferentOrder)
     {
       
-    echo "<div><h2>Order Details</h2></div><table id='itemTable'><tr><th>Item Id</th><th>Order Id</th><th>Item Name</th><th>Qty</th><th>Price</th><th>Company Name</th></tr>";
+    echo "<div><h2 class='o_detail'>Order Details</h2></div><table id='itemTable'><tr><th>Item Id</th><th>Order Id</th><th>Item Name</th><th>Qty</th><th>Price</th><th>Company Name</th></tr>";
     $istableExist=true;
     $oldId=$orderId;
     }
@@ -71,15 +74,14 @@ foreach($orderedItems as $items)
     
  }
 }
-
-if($notcompleted!=0){
+//if($_SESSION['notcompleted']!=0){
 echo "</table><div><form method='POST' action='http://localhost/dealers/menu_order.php'>
 <label class='completed' for='myCheck'>Is Completed</label>
 <input type='checkbox' id='myCheck' name='myCheck' value='".$oldId."' />
 <input type='hidden' name='order_val' id='order_val'/>
 <input type='submit' id='btnOrderCompleted' name='btnorderCompleted' value='Order Completed' />
  </form></div>";
-}
+//}
 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
 echo '<script src="../inc/controller/menu_order.js"></script>';
 

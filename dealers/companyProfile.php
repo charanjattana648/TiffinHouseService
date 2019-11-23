@@ -5,13 +5,6 @@ if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==TRUE && $_SESSION['Us
 {
 ?>
 <?php
-// include("./views/header.php");
-// require_once("./inc/Entities/CompanyProfile.class.php");
-// require_once("./inc/Utility/db.php");
-// require_once("../requireFiles.php");
-?>
-
-<?php
 
 $db=new database();
 $db::initialize("CompanyProfile");
@@ -35,7 +28,8 @@ echo '<table><tr>
 ';
 foreach($com_detail as $cd)
 {
-    echo'<tr class="'.$cd->getCompanyName().'">    
+    $classname=str_replace(' ', '',$cd->getCompanyName());
+    echo'<tr class="'.$classname.'">    
     <td id="companyName">'.$cd->getCompanyName().'</td>
     <td id="phoneNumber">'.$cd->getPhoneNumber().'</td>
     <td id="email">'.$cd->getEmail().'</td>
@@ -45,7 +39,7 @@ foreach($com_detail as $cd)
     <td id="country">'.$cd->getCountry().'</td>     
     <td id="postalCode">'.$cd->getPostalCode().'</td>       
     <td id="itemImage">'.'<a href=""><img src="data:image/jpg;base64,'.base64_encode($cd->getCompanyImage()).'" style="height:50px;width:50px;"/> </a>'.'</td>
-    <td id="x"><a class="edit_cprofile" id="'.$cd->getCompanyName().'" href="#">edit</a></td></tr> ';
+    <td id="x"><a class="edit_cprofile" id="'.$classname.'" href="#">edit</a></td></tr> ';
 }
 // var_dump($com_detail);
 
@@ -90,12 +84,10 @@ echo"</table>";
     <button type="submit" name="updateProfile" id="update_Profile">Update Profile</button>
     <button type="submit" name="deleteProfile" id="delete_Profile">Delete Profile</button>
 	
-<!--itemName	itemPrice	itemImage	itemDetail	ingredient	day-->
-
 </form>
 <?php
 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="./inc/controller/CompanyProfile_dealer.js"></script>';
+<script src="../inc/controller/CompanyProfile_dealer.js"></script>';
 
 if(isset($_POST['submitProfile']))
 {
@@ -144,10 +136,6 @@ if(isset($_POST['submitProfile']))
 
 }
 else{
-  // header(url:"localhost:/")
    header("Location: http://localhost/index.php");
- // echo $_SERVER['HTTP_REFERER'];
-// echo "not entering";
-  // header("Location: ".$_SERVER['REQUEST_URI']);
 }
 ?>

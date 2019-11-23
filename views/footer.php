@@ -2,17 +2,17 @@
 	<div class="footer_top">
 		<div class="left">
 			<h3>Tiffin House Service</h3>
-			<p><a href="index.php">Home</a></p>
-			<p><a href="#">About us</a></p>
+			<p><a href="http://localhost/index.php">Home</a></p>
+			<p><a href="http://localhost/users/about_us.php">About us</a></p>
 			<p><a href="#">Careers</a></p>
 			<p><a href="#">FAQ</a></p>
 			
 		</div>
 		<div class="center_1">
 			<h3>Follow Us</h3>
-			<p><i class='fab fa-facebook-square' style='font-size:36px'></i></p>
-			<p><i class='fab fa-instagram' style='font-size:36px'></i></p>
-			<p><i class='fab fa-google' style='font-size:36px'></i></p>
+			<p><a class="icons" href="https://www.facebook.com/"><i class='fab fa-facebook-square' style='font-size:36px'></i></a></p>
+			<p><a class="icons" href="http://instagram.com/"><i class='fab fa-instagram' style='font-size:36px'></i></a></p>
+			<p><a class="icons" href="http://gmail.com/"><i class='fab fa-google' style='font-size:36px'></i></a></p>
 			
 		</div>
 			<div class="center_2">
@@ -32,7 +32,7 @@
 	</div>
 	<hr class="footer_line">
 	<div class="footer_copyRight">
-		<p>&copy;2019 <span><a href="index.html">Tiffin House Service</a></span>. All Rights Reserved.</p>
+		<p>&copy;2019 <span><a href="http://localhost/index.php">Tiffin House Service</a></span>. All Rights Reserved.</p>
 	</div>
 	</footer>
 

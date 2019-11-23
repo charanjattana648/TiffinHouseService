@@ -74,7 +74,7 @@ $(document).ready(function(){
         var price=$(this).parent().prev().prev().prev().prev().text();
        // var price=$(this).parent().find(".price").text();
     
-        alert("item added !!!"+companyName);
+       // alert("item added !!!"+companyName);
         console.log("cname : "+companyName);
         console.log("itemName : "+item_name);
         console.log("qty : "+qty);

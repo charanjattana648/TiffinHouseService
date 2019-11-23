@@ -13,6 +13,7 @@ require_once("../inc/Entities/CompanyProfile.class.php");
 require_once("../inc/Entities/OrderPersonDetails.class.php");
 require_once("../inc/Entities/OrderedItemDetails.class.php");
 require_once("../inc/Entities/OrderStatus.class.php");
+require_once("../inc/controller/OrderCalculation.class.php");
 
 
 require_once  ("../inc/Entities/Dealer.class.php");

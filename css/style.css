@@ -296,20 +296,19 @@ div#day_id {
 	text-align: center;
 }
 section.leftphoto{
-  height: 180px;
-  width: 15%;
+  height: 280px;
+  width: 28%;
   background-color: #ffffff;
   float: left;
   padding: 20px 40px 10px;
 }
 section.righttext{
 	height : 180px;
-	width : 75%;
+	width : 70%;
 	background-color : #fdffff;
 	float : right;
 	padding :10px;
 }
-
 
 img.menuimage:hover             
 {
@@ -1135,4 +1134,42 @@ input#myCheck {
 label.completed {
     margin: 0 20px 0 20px;
     display: inline;
+}
+h4.userNameSession {
+    display: inline-block;
+    color: #fff;
+    margin: 0;
+}
+.leftphoto img {
+    height: 280px;
+    width: 100%;
+}
+a.icons{
+    color: white;
+}
+
+input#itemImage {
+    margin: 0 0 20px 0;
+}
+form#dForm {
+    /* text-align: center; */
+    width: 70%;
+    margin: 0 auto;
+    padding: 40px 40px;
+    margin-top: 40px;
+}
+#dForm label {
+    display: inline-block;
+}
+select#day {
+    width: 100%;
+    height: 40px;
+}
+div#dealerMenu {
+    /* text-align: center; */
+    width: 100%;
+}
+h2.p_detail {
+    display: inline-block;
+    width: 100%;
 }

@@ -15,7 +15,7 @@ class CompanyProfile{
     public function __construct(){
     }
 
-    public function setData($companyName,$phoneNumber,$email,$address,$city,$province,$country,$postalCode,$companyImage)
+    public function setData($companyName,$phoneNumber,$email,$address,$city,$province,$country,$postalCode,$companyImage="")
     {
         $this->companyName=$companyName;
         $this->phoneNumber=$phoneNumber;

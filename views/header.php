@@ -25,7 +25,7 @@
 				$_SESSION['user_Name']="";
 				$_SESSION['company_name']="";
 				$page = $_SERVER['PHP_SELF'];
-				//header("Location: ".$page);
+				header("Location: ".$page);
 			}
 
 			if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']=='true')
@@ -35,7 +35,7 @@
 			   <li><a href="?logout_me" >Logout</a></li>
 			   <?php
 			}else{
-					 echo' <li ><span id="login_page">Login</span></li>
+					 echo' <li class="signIn"><span id="login_page">Login</span></li>
 				      <li ><span id="signUp_page">SignUp</span></li>';
 			 }
 
@@ -49,7 +49,7 @@
 		<div class="head_top"><div class="logo"><img src="../images/logoItm.jpg" height="100px" width="140px"/></div>
 			<div class="title"><h1>Tiffin House Service</h1></div></div>
 			<div class="head_bottom"><nav><ul>
-			<li><a href="../index.php" >Home</a></li>
+			<li><a href="http://localhost/index.php" >Home</a></li>
 			<?php
 			if(isset($_SESSION['User_type']) && ($_SESSION['User_type']=="dealer" || $_SESSION['User_type']=="admin"))
 			{

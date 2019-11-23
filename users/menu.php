@@ -21,7 +21,10 @@ $db::initialize("Menu");
 $menu="";
 if(isset($_GET['cname']))
 { 
-  $menu=$db::getMeal($_GET['cname']);
+  //echo $_GET['cname'];
+  $c_name=str_ireplace("%20"," ",$_GET['cname']);
+  //echo $c_name;
+  $menu=$db::getMeal($c_name);
 }else{
 $menu=$db::getMeal("Happy");
 }

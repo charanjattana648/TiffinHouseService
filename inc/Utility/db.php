@@ -84,7 +84,7 @@ class database{
              self::$db->bind(':itemDetail',$menu->getItemDetail());
              self::$db->bind(':ingredient',$menu->getIngredient());
              self::$db->bind(':day',$menu->getDay());
-             self::$db->bind(':companyName',"Happy");
+             self::$db->bind(':companyName',$menu->getCompanyName());
              self::$db->bind(':dayId',$menu->getDayId());
              self::$db->execute();
          }catch(PDOException $err)
@@ -116,6 +116,7 @@ class database{
             $menu_update_query="UPDATE TiffinHouseDb.Menu SET itemName=:itemName,itemPrice=:itemPrice,itemImage=:itemImage,itemDetail=:itemDetail,
             ingredient=:ingredient,day=:day,companyName=:companyName,dayId=:dayId where itemId=:itemId";
         }
+       // echo $menu->getItemName()." -".$menu->getItemId()."---". $menu->getItemPrice();
        
          try{
              self::$db->query($menu_update_query);
@@ -129,11 +130,12 @@ class database{
              self::$db->bind(':itemDetail',$menu->getItemDetail());
              self::$db->bind(':ingredient',$menu->getIngredient());
              self::$db->bind(':day',$menu->getDay());
-             self::$db->bind(':companyName',"Happy");
+             self::$db->bind(':companyName',$menu->getCompanyName());
              self::$db->bind(':dayId',$menu->getDayId());
              self::$db->execute();
          }catch(PDOException $err)
          {
+             //echo "<script>alert('error : ".$err->getMessage()." ')</script>";
             echo "Error : ".$err->getMessage();
          }
     }
@@ -251,27 +253,29 @@ class database{
    /**update company detail */
       public static function updateCompanyDetail(CompanyProfile $cProfile)
       {
+        $update_company_profile_query="UPDATE TiffinHouseDb.contactdetail SET phoneNumber=:phoneNumber ,email=:email, address=:address,city=:city,
+        province=:province,country=:country,postalCode=:postalCode WHERE companyName=:companyName";
+          if($cProfile->getCompanyImage()!="")
+          {            
           $update_company_profile_query="UPDATE TiffinHouseDb.contactdetail SET phoneNumber=:phoneNumber ,email=:email, address=:address, city=:city, 
-          province=:province;, country=:country, postalCode=:postalCode, companyImage=:companyImage WHERE companyName=:companyName";
-          if($cProfile->getCompanyImage()=="")
-          {
-            $update_company_profile_query="UPDATE TiffinHouseDb.contactdetail SET phoneNumber=:phoneNumber ,email=:email, address=:address, city=:city, 
-            province=:province;, country=:country, postalCode=:postalCode WHERE companyName=:companyName";
+          province=:province, country=:country, postalCode=:postalCode, companyImage=:companyImage WHERE companyName=:companyName";
           }
+          
            try{
                self::$db->query($update_company_profile_query);
                self::$db->bind(':companyName',$cProfile->getCompanyName());
-               self::$db->bind(':phoneNumber',$cProfile->getPhoneNumber());
-               self::$db->bind(':email',$cProfile->getEmail());
-               self::$db->bind(':address',$cProfile->getAddress());
-               self::$db->bind(':city',$cProfile->getCity());
-               self::$db->bind(':Province',$cProfile->getProvince());
-               self::$db->bind(':country',$cProfile->getCountry());
-               self::$db->bind(':postalCode',$cProfile->getPostalCode());
+               self::$db->bind(':phoneNumber',$cProfile->getPhoneNumber());               
+              self::$db->bind(':email',$cProfile->getEmail());
+              self::$db->bind(':address',$cProfile->getAddress());              
+              self::$db->bind(':city',$cProfile->getCity());
+              self::$db->bind(':province',$cProfile->getProvince());
+               self::$db->bind(':country',$cProfile->getCountry());               
+             self::$db->bind(':postalCode',$cProfile->getPostalCode());
                if($cProfile->getCompanyImage()!="")
                  {
                   self::$db->bind(':companyImage',$cProfile->getCompanyImage());
-                 }
+                 }            
+               
                self::$db->execute();
            }catch(PDOException $err)
            {
@@ -352,7 +356,7 @@ class database{
             self::$db->bind(':itemPrice',$menu->getItemPrice());
             self::$db->bind(':itemImage',$menu->getItemImage());
             self::$db->bind(':itemDetail',$menu->getItemDetail());
-            self::$db->bind(':companyName',"Happy");
+            self::$db->bind(':companyName',$menu->getCompanyName());
             self::$db->execute();
         }catch(PDOException $err)
         {
@@ -394,7 +398,7 @@ class database{
             self::$db->bind(':itemImage',$menu->getItemImage());
             }
             self::$db->bind(':itemDetail',$menu->getItemDetail());
-            self::$db->bind(':companyName',"Happy");
+            self::$db->bind(':companyName',$menu->getCompanyName());
             self::$db->execute();
         }catch(PDOException $err)
         {
@@ -423,7 +427,6 @@ public static function getTiffinPlan(string $companyName)
 /**Add meal plan*/
 public static function addMealPlan(MealPlan $mealplan)
 {
-    //INSERT INTO `MealPlan`(`companyName`, `tiffinType`, `price`, `tiffinDescription`, `subscriptionType`)
     $meal_add_query="INSERT INTO TiffinHouseDb.MealPlan (companyName, tiffinType, price,tiffinDescription, subscriptionType)
      VALUES (:companyName,:tiffinType,:price,:tiffinDescription,:subscriptionType)";
      try{
@@ -456,7 +459,6 @@ public static function deleteMealPlan($companyName,$tiffinType,$subscriptionType
     }
 }
 
-//INSERT INTO `ordereditemdetails`(`itemId`, `orderId`, `itemName`, `qty`, `price`, `itemTotalPrice`, `companyName`) VALUES (
 
 /**Add ordereditemdetails */
 public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
@@ -479,8 +481,6 @@ public static function addOrdereditemdetails(Ordereditemdetails $ordereditems)
         echo "Error : ".$err->getMessage();
      }
 }
-//INSERT INTO `orderpersondetails`(`orderId`, `name`, `email`, `address`, `city`, `state`, 
-//`zip`, `shippingOption`, `paymentType`, `tax`, `totalPrice`, `paymentStatus`)
 /**Add personal details and order details*/
 public static function addOrderpersondetails(Orderpersondetails $persondetails)
 {

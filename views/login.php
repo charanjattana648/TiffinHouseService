@@ -15,7 +15,7 @@ btn.onclick=function(){
 <div id="login_div" class="modal">
 
   <!-- Modal Content -->
-  <form class="modal-content animate" action="index.php" method="post">
+  <form class="modal-content animate" action="http://localhost/index.php" method="post">
     
 
     <div class="container">
@@ -76,8 +76,10 @@ btn.onclick=function(){
     $_SESSION['loggedIn']=true;   
     if($_POST['userType']=="dealer")
     {
+      echo $users->getCompanyName();
       $_SESSION['company_name']=$users->getCompanyName();
     }     
+    header("Location: http://localhost/index.php");
     //$page = $_SERVER['PHP_SELF'];
     if( $refresh==false)
     {

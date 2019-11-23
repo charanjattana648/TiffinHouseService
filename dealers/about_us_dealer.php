@@ -59,7 +59,7 @@ if(isset($_POST['add_aboutUs']))
 }
 
 echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="./inc/controller/about_us_dealer.js"></script>';
+<script src="../inc/controller/about_us_dealer.js"></script>';
 
 ?>
 
@@ -67,10 +67,6 @@ echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min
 
 }
 else{
-  // header(url:"localhost:/")
    header("Location: http://localhost/index.php");
- // echo $_SERVER['HTTP_REFERER'];
-// echo "not entering";
-  // header("Location: ".$_SERVER['REQUEST_URI']);
 }
 ?>

@@ -82,25 +82,33 @@ $(document).ready(function(){
     console.log("hello jquery");
     $("a.edit_menu").click(function(){
         var mId=$(this).attr("id");
-       $('.'+mId+' td').each(function() {
+       $('tr.'+mId+' td').each(function() {
            if($(this).attr('id')=="menuId")
            {
+           // $("input#itemPrice").val($(this).html());
             menu_id.value=$(this).html();
            }else if($(this).attr('id')=="day")
            {
-            day.value=$(this).html()+":"+$(this).attr("class");;
+            $("select#day").val($(this).html()+":"+$(this).attr("class"));
+           // day.value=$(this).html()+":"+$(this).attr("class");;
+           console.log($(this).html()+":"+$(this).attr("class"));
            }else if($(this).attr('id')=="itemName")
            {
-            itemName.value=$(this).html();
+               $("input#itemName").val($(this).html());
+               console.log("hello"+$(this).html());
+           // itemName.value=$(this).html();
            }else if($(this).attr('id')=="itemPrice")
            {
-            itemPrice.value=$(this).html();
+            $("input#itemPrice").val($(this).html());
+            //itemPrice.value=$(this).html();
            }else if($(this).attr('id')=="itemDetail")
            {
-            itemDetail.value=$(this).html();
+            $("input#itemDetail").val($(this).html());
+            //itemDetail.value=$(this).html();
            }else if($(this).attr('id')=="ingredient")
            {
-            ingredient.value=$(this).html();
+            $("input#ingredient").val($(this).html());
+            //ingredient.value=$(this).html();
            }
         
     });

@@ -31,7 +31,6 @@ $(document).ready(function(){
         $("tr."+cName+" td").each(function(){
             if($(this).attr("id")=="aCompany")
             {
-                alert("hello");
                 company_Name.value=cName;
                 about_Company.value=$(this).html();
 

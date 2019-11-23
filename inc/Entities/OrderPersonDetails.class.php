@@ -37,6 +37,7 @@ class OrderPersonDetails{
         $this->tax= $tax;
         $this->totalPrice=$totalPrice;
         $this->paymentStatus=$paymentStatus;
+        $this->isCompleted=$isCompleted;
     }
     /**getters */
     public function getIsCompleted()

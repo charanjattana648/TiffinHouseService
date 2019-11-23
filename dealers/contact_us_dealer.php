@@ -6,17 +6,6 @@ if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==TRUE && $_SESSION['Us
 ?>
 
 <?php
-// include ("./views/header.php");
-// include("./views/signUp.php");
-// include("./views/login.php");
-// require_once  ("inc/Utility/db.php");
-// require_once  ("inc/Entities/ContactUs.class.php");
-// require_once("../requireFiles.php");
-
-?>
-
-
-<?php
 	
 		extract($_REQUEST);  
 		$db=new database();
@@ -25,7 +14,7 @@ if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==TRUE && $_SESSION['Us
 	{
         $message=$db::getMessage($_SESSION['company_name']);
     }else{
-        $message=$db::getMessage();
+        $message=$db::getMessage("");
     }
        // var_dump($message);
         echo '<table><tr>
@@ -58,11 +47,6 @@ if((isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]==TRUE && $_SESSION['Us
 
 }
 else{
-  // header(url:"localhost:/")
-  //header_remove(); 
    header("Location: http://localhost/index.php");
- // echo $_SERVER['HTTP_REFERER'];
-// echo "not entering";
-  // header("Location: ".$_SERVER['REQUEST_URI']);
 }
 ?>

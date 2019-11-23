@@ -1,23 +1,13 @@
 <?php      
 ob_start();   
-// require_once("inc/config.inc.php");
-// include ("./views/header.php");
-// include("./views/signUp.php");
-// include("./views/login.php");
-// require_once ("./inc/Utility/auth.php");
-// require_once  ("inc/Entities/User.class.php");
-// require_once  ("./inc/Entities/Menu.class.php");
-// require_once ("./inc/Utility/db.php");
-// require_once ("./inc/Utility/PDOAgent.class.php");
-
 require_once("../requireFiles.php");
-
 require_once("../inc/controller/OrderCalculation.class.php");
-
 ?>
 
 
 <?php
+if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']=='true')
+{
 $count= count($_COOKIE);
 $found=false;
 $found_item=false;
@@ -36,7 +26,7 @@ foreach($_COOKIE as $key=>$val)
         $found_item=true;
     }
 }
-$index=1;
+$index=0;
 while($index < $count)
 {
   if(isset($_COOKIE["item".$index]) && $_COOKIE["item".$index]!="")
@@ -79,27 +69,27 @@ echo '</div>';
 
 
 <?php
-echo '<div id="payment_details"><form method="POST" id="payment_form">
+echo '<div id="payment_details"><form method="POST" id="payment_form" action="OrderActions.php">
 <div class="row">
 <div class="col-50">
   <h3>Billing Address</h3>
   <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-  <input type="text" id="fname" name="fullname" placeholder="John M. Doe">
+  <input type="text" id="fname" name="fullname" placeholder="John M. Doe" required>
   <label for="email"><i class="fa fa-envelope"></i> Email</label>
-  <input type="text" id="email" name="email" placeholder="john@example.com">
+  <input type="text" id="email" name="email" placeholder="john@example.com" required>
   <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-  <input type="text" id="adr" name="address" placeholder="13811 90Ave">
+  <input type="text" id="adr" name="address" placeholder="13811 90Ave" required>
   <label for="city"><i class="fa fa-institution"></i> City</label>
-  <input type="text" id="city" name="city" placeholder="Surrey">
+  <input type="text" id="city" name="city" placeholder="Surrey" required>
 
   <div class="row">
     <div class="col-50">
       <label for="state">State</label>
-      <input type="text" id="state" name="state" placeholder="BC">
+      <input type="text" id="state" name="state" placeholder="BC" required>
     </div>
     <div class="col-50">
       <label for="zip">Zip</label>
-      <input type="text" id="zip" name="zip" placeholder="V3V 5S5">
+      <input type="text" id="zip" name="zip" placeholder="V3V 5S5" required>
     </div>
   </div>
   
@@ -118,11 +108,11 @@ echo '<div id="payment_details"><form method="POST" id="payment_form">
 <div class="row">
   <div class="col-50">
     <label for="byCash">Cash</label>
-    <input type="radio" id="byCash" value="Cash" name="paymentType" checked>
+    <input type="radio" class="paymentType" id="byCash" value="Cash" name="paymentType" checked>
   </div>
   <div class="col-50">
     <label for="byCard">Card</label>
-    <input type="radio" id="byCard" value="Card" name="paymentType">
+    <input type="radio" class="paymentType" id="byCard" value="Card" name="paymentType">
   </div>
 </div>
 
@@ -145,11 +135,11 @@ echo '<div id="payment_details"><form method="POST" id="payment_form">
      <label for="ccnum">Credit card number</label>
      <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
      <label for="expmonth">Exp Month</label>
-     <input type="text" id="expmonth" name="expmonth" placeholder="September">
+     <input type="text" id="expmonth" name="expmonth" placeholder="December">
      <div class="row">
        <div class="col-50">
          <label for="expyear">Exp Year</label>
-         <input type="text" id="expyear" name="expyear" placeholder="2018">
+         <input type="text" id="expyear" name="expyear" placeholder="2019">
        </div>
        <div class="col-50">
          <label for="cvv">CVV</label>
@@ -159,106 +149,23 @@ echo '<div id="payment_details"><form method="POST" id="payment_form">
    </div>
    </div>
    <input type="submit" name="checkout" value="Continue to checkout" class="btn">
-   <input type="submit" name="checkout1" value="Continue to checkout1" class="btn">
-</form>
-     </div>';
-?>
-
-<?php
-//var_dump($_COOKIE);
-$date_old = '23-5-2016 23:15:23'; 
-//Date for database
-// if(isset($_POST['checkout1']))
-// {
-//   $today=new DateTime();
-//   $date = date('Y-m-d H:i:s');
-//   date_default_timezone_set('America/Vancouver');
-//   $today = new DateTime();
-//   $interval = new DateInterval('P1W');
-//   $today->add($interval);
-//   $exp_date=$today->format('Y-m-d H:i:s');
-//   if (stripos($cartItem['itemName'], "Weekly")===0 ) {
-//     echo "weekly found";
-//  }else if (stripos($cartItem['itemName'], "Monthly")===0) {
-//   echo "monthly found";
-//   }else{
-//    echo "not found";
-//  }
-// }
-if(isset($_POST['checkout']))
-{
-
-  $personDetails=new OrderPersonDetails();
-  $OrderedItem=new OrderedItemDetails();
-  $orderStatus=new OrderStatus();
-  $today=new DateTime();
-  $currDate=$today;
-  $date = date('Y-m-d H:i:s');
-  date_default_timezone_set('America/Vancouver');
-  $today = new DateTime();
-  $paymentStatus="completed";
-  if($_POST['paymentType']=="Cash")
-  {
-    $paymentStatus="pending";
-  }
-
-  if(isset($_SESSION['totalPrice']) && $_SESSION['totalPrice']!=0)
-  {
-  $personDetails->addData( $_POST['fullname'], $_POST['email'],$_POST['address'] ,
-  $_POST['city'], $_POST['state'], $_POST['zip'], $_POST['shipping_option'], $_POST['paymentType'], $_SESSION['tax'],$_SESSION['totalPrice'], $paymentStatus);
-   $db=new database();
-   $db::initialize("OrderPersonDetails");
-   $orderId=$db::addOrderpersondetails($personDetails);
-    echo "<script> alert('".$orderId."')</script>";
-   //adding item to table
-   if( $orderId!="")
-   {
-   foreach($_COOKIE as $key=>$val)
-    {
-      if(stristr($key, 'item')) {
-    
-        $cartItem=json_decode($val,true);
-          echo $cartItem['itemName']."<br>";
-          //doing
-          $OrderedItem->addData($orderId,$cartItem['itemName'], $cartItem['qty'], $cartItem['price'],$cartItem['companyName']);
-          $db::initialize("OrderedItemDetails");
-          $itemId=$db::addOrdereditemdetails($OrderedItem);
-
-          if (stripos($cartItem['itemName'], "Weekly")===0 ) {
-            
-            $interval = new DateInterval('P1W');
-            $today->add($interval);
-            $exp_date=$today->format('Y-m-d H:i:s');//$date->format('Y-m-d H:i:s');
-            $orderStatus->addData($itemId, $orderId,$exp_date, $currDate->format('Y-m-d H:i:s'));
-            $db::addOrderStatus($orderStatus);
-            echo "weekly found";
-            //doing add table over here
-         }else if (stripos($cartItem['itemName'], "Monthly")===0) {
-            $interval = new DateInterval('P1M');
-            $today->add($interval);
-            $exp_date=$today->format('Y-m-d H:i:s');
-            $orderStatus->addData($itemId, $orderId,$exp_date, $currDate->format('Y-m-d H:i:s'));
-            $db::addOrderStatus($orderStatus);
-            echo "monthly found";
-          }
-          $order->emptyCart();
-          // $cartItem['companyName'] change name
-         
-      }
-    }
-  }
-   
-   }  
-  }else{
-    echo "<script> alert('You don't have any Items to Pay'); </script>";
-  }
-
-
+</form>';
+    echo' </div>';
+     
 
 ?>
+
+
 
 <!--Footer-->
 <?php
 
 include ("../views/footer.php");
+}
+else{
+
+    echo "<script>alert('Please SignIn to make Order or check items in cart!!!');
+    window.location.replace('http://localhost/index.php');
+    </script>";
+}
 ?>

@@ -22,7 +22,7 @@ function validateCompanyProfile()
     }else if(phoneNumber.value=="")
     {
         throw "please add phoneNumber";
-    }else if(email.value)
+    }else if(email.value=="")
     {
         throw "please add email";
     }else if(address.value=="")
@@ -45,19 +45,7 @@ function validateCompanyProfile()
 
 function add_company_profile(){
     try{
-       validateDealerMenu();
-    if(companyImage.value=="")
-    {
-        throw "please add companyImage";
-    }
-    }catch($err){
-        alert("Error : "+$err);
-        return false;
-    }
-}
-function add_company_profile(){
-    try{
-       validateDealerMenu();
+        validateCompanyProfile();
     if(companyImage.value=="")
     {
         throw "please add companyImage";
@@ -73,7 +61,7 @@ btn_add.onclick=function(){
 };
 btn_update.onclick=function(){
     try{
-        validateDealerMenu();
+        validateCompanyProfile();
      }catch($err){
          alert("Error : "+$err);
          return false;
@@ -96,14 +84,17 @@ btn_delete.onclick=function(){
 // }
 
 $(document).ready(function(){
-    console.log("hello jquery");
+    console.log("hello jquery ------");
     $("a.edit_cprofile").click(function(){
+        // console.log("echooooooo");
        
         var cName=$(this).attr("id");
+        console.log("echooooooo --"+cName);
        $('.'+cName+' td').each(function() {
-     
+        console.log($(this).html());
            if($(this).attr('id')=="companyName")
            {
+               console.log($(this).html());
             company_Name.value=$(this).html();
             alert("hello : "+company_Name.value)
            }else if($(this).attr('id')=="phoneNumber")
