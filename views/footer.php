@@ -4,8 +4,7 @@
 			<h3>Tiffin House Service</h3>
 			<p><a href="http://localhost/index.php">Home</a></p>
 			<p><a href="http://localhost/users/about_us.php">About us</a></p>
-			<p><a href="#">Careers</a></p>
-			<p><a href="#">FAQ</a></p>
+		
 			
 		</div>
 		<div class="center_1">
@@ -23,11 +22,6 @@
 				Surrey,BC		
 				
 			</address>
-		</div>
-		<div class="right">
-			<h3>Get Updates On Tiffin House Service</h3>
-			<input id="email_subscribe" type="email" placeholder="Enter your Email."/><br>
-			<button id="btn_subscribe">SUBSCRIBE</button>			
 		</div>
 	</div>
 	<hr class="footer_line">

@@ -31,12 +31,12 @@ $(document).ready(function(){
     })
 
     $(document).on('submit','form#payment_form',function(){
-        var x=validateData();
-        alert("Data is "+x);
+        var x=validate_Data();
+      //  alert("Data is "+x);
         return  x;
      });
 
-    function validateData(){
+    function validate_Data(){
         console.log("entered order jsfghjjhjhghhgssss");
     if (!regexEmail.test($("#email").val()))
     {

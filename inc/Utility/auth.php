@@ -22,11 +22,12 @@ public static function add_user(User $new_user,string $type)
 	VALUES(:userfirstName,:user_lastName,:user_email,:user_pass,:user_phoneNUmber,:user_address,:user_postalCode)";
 
 	try{
+		$hashed_password=password_hash($new_user->getPassword(),PASSWORD_BCRYPT);
 		self::$db->query($insert_user_query);
 		self::$db->bind(':userfirstName',$new_user->getFirstName());
 		self::$db->bind(':user_lastName',$new_user->getLastName());
 		self::$db->bind(':user_email',$new_user->getUserEmail());
-		self::$db->bind(':user_pass',$new_user->getPassword());
+		self::$db->bind(':user_pass',$hashed_password);
 		self::$db->bind(':user_phoneNUmber',$new_user->getPhoneNumber());
 		self::$db->bind(':user_address',$new_user->getAddress());
 		self::$db->bind(':user_postalCode',$new_user->getPostalCode());
@@ -54,11 +55,12 @@ public static function add_dealer(Dealer $new_dealer,string $type)
 	VALUES(:userfirstName,:user_lastName,:user_email,:user_pass,:user_phoneNUmber,:user_address,:user_postalCode,:companyName,:isVerified)";
 
 	try{
+		$hashed_password=password_hash($new_dealer->getPassword(),PASSWORD_BCRYPT);
 		self::$db->query($insert_user_query);
 		self::$db->bind(':userfirstName',$new_dealer->getFirstName());
 		self::$db->bind(':user_lastName',$new_dealer->getLastName());
 		self::$db->bind(':user_email',$new_dealer->getUserEmail());
-		self::$db->bind(':user_pass',$new_dealer->getPassword());
+		self::$db->bind(':user_pass',$hashed_password);
 		self::$db->bind(':user_phoneNUmber',$new_dealer->getPhoneNumber());
 		self::$db->bind(':user_address',$new_dealer->getAddress());
 		self::$db->bind(':user_postalCode',$new_dealer->getPostalCode());
@@ -84,18 +86,26 @@ public static function add_dealer(Dealer $new_dealer,string $type)
 
 public static function signIn_user($userEmail,$pass,$type) 
 {	
-	$get_user_query="SELECT * FROM TiffinHouseDb.$type WHERE userEmail=:userEmail and password=:psw";
+	
+	$get_user_query="SELECT * FROM TiffinHouseDb.$type WHERE userEmail=:userEmail";
 
 	try{
+		
 		//echo "<br>type is ".$type;
 		self::$db->query($get_user_query);		
 		self::$db->bind(":userEmail",$userEmail);
-		self::$db->bind(":psw",$pass);
+		//self::$db->bind(":psw",$hashed_password);
 		self::$db->execute();
 		//$user_data=new Dealer();
 		$user_data=self::$db->singleResult();	
 		//var_dump($user_data);
-		return($user_data);
+		if($user_data!="" && password_verify($pass,$user_data->getPassword()))
+		{
+			return($user_data);
+		}
+		return "";
+		//var_dump($user_data);
+		
 	}catch(PDOException $e)
 	{
 		echo $e->getMessage();

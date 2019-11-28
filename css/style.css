@@ -540,14 +540,14 @@ button#btn_subscribe {
 	
 	display: inline-block;
 	padding: 40px 20px;
-	width: 22%;
+	width: 33%;
 	color: white;
 }
 .footer_top .left{
 	
 	display: inline-block;
 	padding: 30px 15px;
-	width: 22%;
+	width: 33%;
 	color: white;
 }
 .footer_top .center_2 a{
@@ -741,7 +741,7 @@ div#company_message_outer {
 }
 .footer_top .left, .footer_top .center_1, .footer_top .center_2, .footer_top .right {
     display: inline-block;
-    width: 24%;
+    width: 33%;
     padding: 20px 15px;
 }
 .footer_top h3 {

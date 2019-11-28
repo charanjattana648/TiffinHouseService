@@ -10,7 +10,8 @@ require_once("../requireFiles.php");
 		<select class="company_name_select" name="company_name">
 		   <option value="admin">Tiffin House Service (Admin)</option>
 			<option value="happy">Happy</option>
-			<option value="happy">Hunger Feed</option>
+			<option value="Hunger Feed">Hunger Feed</option>
+			<option value="Tasty Tiffin">Tasty Tiffin</option>
 		</select><br>
 		<input type="text" name="fName_cu" placeholder="Enter FirstName" /><br>
 		<input type="text" name="lName_cu" placeholder="Enter LastName"/><br>

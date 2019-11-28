@@ -18,21 +18,12 @@ btn.onclick=function(){
 }
 }
 
-/*var btn=document.getElementById('signIn_page');
-btn.onclick=function(){
-	console.log("Entering signIn")
-	document.getElementById('signUp').style.display='none';
-	
-	document.getElementById('signIn').style.display='none';
-}*/
-
-
     </script>
 <!-- The Modal (contains the Sign Up form) -->
 <div id="signUp" class="modal">
   <span onclick="document.getElementById('signUp').style.display='none'" class="close" title="Close Modal"></span>
   
-  <form class="modal-content" method="post" id="signUp_form" action="./views/signUp_Login.php">
+  <form class="modal-content" method="post" id="signUp_form" action="http://localhost/views/signUp_Login.php">
     <div class="container">
       <h1>Sign Up</h1>
       <p class="msg">Please fill in this form to create an account.</p>
@@ -58,7 +49,7 @@ btn.onclick=function(){
       <input type="text" placeholder="Enter Address" name="address" required>
       </p>  <p id="signUp_row">
       <label for="pCode"><b>Postal Code</b></label>
-      <input type="text" placeholder="XXX XXX" name="pCode" id="pCode" required>
+      <input type="text" placeholder="XXX XXX" name="pCode" id="p_Code" required>
       </p>  <p id="signUp_row">
 
       <label for="psw"><b>Password</b></label>
@@ -85,15 +76,3 @@ btn.onclick=function(){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="../inc/controller/signUp_validation.js"> </script>
 </div>
-<?php
- 
-//include ("./model/dbConn.php");
-//include ("./model/auth.php");
-  //require "./model/dbConn.php";
-  // include ("./inc/Utility/auth.php");
-  
-// require_once  ("./inc/Entities/User.class.php");
-// require_once  ("./inc/Entities/Dealer.class.php");
-// require_once  ("./inc/Utility/auth.php");
- 
-  ?>
