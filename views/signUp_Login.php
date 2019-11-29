@@ -17,7 +17,7 @@ if(isset($_POST['submitSU']))
       $dealer->setData($_POST['fName'],$_POST['lName'],$_POST['email_signUp'],$_POST['psw_signUp'],$_POST['pNumber'],$_POST['address'],$_POST['pCode']);
       $dealer->setCompanyName($_POST['company_name']);  
       $auth::initialize("Dealer");
-      $res::add_dealer($dealer,"Dealer");
+      $res=$auth::add_dealer($dealer,"Dealer");
       checkResult($res);
   }
   else{  
@@ -29,7 +29,7 @@ if(isset($_POST['submitSU']))
         $res=$auth::add_user($user,"User");    
         checkResult($res);    
 }
-
+}
 function checkResult($res)
 {
     if($res==-1)
@@ -40,6 +40,5 @@ function checkResult($res)
             header('Location: http://localhost/index.php');
         }
 
-}
 }
 ?>
