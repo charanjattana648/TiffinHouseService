@@ -27,7 +27,7 @@ echo'<table><tr>
     //var_dump($company);
     foreach($company as $c)
     {
-        echo '<tr class="'.$c->getCompanyName().'">
+        echo '<tr id="row_about" class="'.$c->getCompanyName().'">
         <td id="cName">'.$c->getCompanyName().'</td>
         <td id="aCompany">'.$c->getAboutCompany().'</td>
         <td id="x"><a class="edit_aboutUs" id="'.$c->getCompanyName().'" href="#">edit</a></td>

@@ -25,10 +25,12 @@ document.getElementById("update_aboutUs").onclick=function(){
 }
 /** after validating when document is ready ,the information is added or edited */
 $(document).ready(function(){
+    console.log("entering --------");
     $("a.edit_aboutUs").click(function(){
-        
+        console.log("entering")
         var cName=$(this).attr("id");
-        $("tr."+cName+" td").each(function(){
+        $("tr#row_about td").each(function(){
+            console.log("entering")
             if($(this).attr("id")=="aCompany")
             {
                 company_Name.value=cName;

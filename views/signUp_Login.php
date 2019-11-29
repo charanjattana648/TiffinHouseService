@@ -39,6 +39,5 @@ function checkResult($res)
             echo "<script>alert('User added successfully!');</script>";   
             header('Location: http://localhost/index.php');
         }
-
 }
 ?>
