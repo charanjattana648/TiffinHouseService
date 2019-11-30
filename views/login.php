@@ -15,7 +15,7 @@
 
   <!-- Modal Content  -->
   <!-- action="http://localhost/index.php" -->
-  <form class="modal-content animate" action="http://localhost/views/signUp_Login.php" method="post">
+  <form class="modal-content animate" action="http://localhost/index.php" method="post">
 
 
     <div class="container">
@@ -47,3 +47,44 @@
   </form>
 
 </div>
+
+<?php
+/**Methods for signIn and check if user exists or not */
+if (isset($_POST['submit'])) {
+  extract($_REQUEST);
+  if (!empty($_POST['uname_login']) && !empty($_POST['psw_login'])) {
+    $auth = new Auth();
+    $users = "";
+    if ($_POST['userType'] == "dealer") {
+      // echo "dealer";
+      $auth::initialize("Dealer");
+      $users = $auth::signIn_user($_POST['uname_login'], $_POST['psw_login'], "dealer");
+    } else if ($_POST['userType'] == "user") {
+      // echo "user";
+      $auth::initialize("User");
+      $users = $auth::signIn_user($_POST['uname_login'], $_POST['psw_login'], "user");
+    } else { }
+
+    $refresh = false;
+    /**storing the user data in sessions  */
+    if ($users != "") {
+      $_SESSION['User_type'] = $_POST['userType'];
+      $_SESSION['user_Name'] = $users->getUserEmail();
+      $_SESSION['loggedIn'] = true;
+      if ($_POST['userType'] == "dealer") {
+        echo $users->getCompanyName();
+        $_SESSION['company_name'] = $users->getCompanyName();
+      }
+
+      /**redirecting page to home after successfull signIn */
+      header("Location: http://localhost/index.php");
+      if ($refresh == false) {
+        $refresh = true;
+      }
+    } else {
+      $_SESSION['loggedIn'] = false;
+      echo "<script>alert('please enter valid email and password');</script>";
+    }
+  }
+}
+?>
