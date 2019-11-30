@@ -19,24 +19,23 @@ function validate_Data()
     var em=$("#email_signUp").val();
 if(!regex_email.test(em))
 {
-    alert("Please enter valid email address!!");
-    return false;
-}else if(!regex_phoneNumber.test($("#pNumber").val()))
+    throw "Please enter valid email address!!";    
+}
+else if(!regex_phoneNumber.test($("#pNumber").val()))
 {
-    alert("Please enter valid phone number!!");
-    return false;
-}else if(!regex_pCode.test($("#p_Code").val()))
+    throw "Please enter valid phone number!!";
+}
+else if(!regex_pCode.test($("#p_Code").val()))
 {
-    alert("Please enter valid postal code!!");
-    return false;
-}else if(!regex_psw.test($("#psw_signUp").val()))
+    throw "Please enter valid postal code!!";
+}
+else if(!regex_psw.test($("#psw_signUp").val()))
 {
-    alert("Password must contain one lowercase ,uppercase and length should be between 6 and 20!!");
-    return false;
-}else if($("#psw_signUp").val()!=$("#psw_repeat_signUp").val())
+    throw "Password must contain one lowercase ,uppercase and length should be between 6 and 20!!";
+}
+else if($("#psw_signUp").val()!=$("#psw_repeat_signUp").val())
 {
-    alert("Password does not match with confirm password!!");
-    return false;
+    throw "Password does not match with confirm password!!";
 }
 
 }
@@ -58,14 +57,8 @@ $(document).ready(function(){
         if(sel_user_type.value=="dealer")
         {
             document.getElementById("compName").style.display="block";
-            // document.getElementById("comp_name_lbl").style.display="block";
         }else{
             document.getElementById("compName").style.display="none";
-            // document.getElementById("comp_name_lbl").style.display="none";
         }
       });
-    //   $("form#signUp_form").submit(function(){
-    //       console.log("entering validation")
-    //       validate_Data();
-    //   })
 });

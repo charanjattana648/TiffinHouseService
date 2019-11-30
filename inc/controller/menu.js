@@ -1,5 +1,10 @@
 var qty=document.getElementById("qty_item");
 var btn_menu_item=document.getElementsByName("mi_to_cart");
+/**
+ * hides the details of items
+ * shows on image click with 
+ * qty input and button
+ */
 $(document).ready(function(){
 
     $("section.vegMenu").hide();
@@ -30,7 +35,6 @@ $(document).ready(function(){
         var companyNamehead=$("h2.menuHead").text();   
         var startIndex=companyNamehead.indexOf(":");
         var endIndex=companyNamehead.indexOf("Menu");
-        //doing
         var companyName=companyNamehead.substring(startIndex+1, endIndex).trim();
         console.log(item_name+" val "+qty+" price "+price+" id "+item_id+" company : "+companyName);
         var date=new Date();
@@ -43,9 +47,6 @@ $(document).ready(function(){
         cartObject.companyName=companyName;
         var cart_data=JSON.stringify(cartObject);        
         var cookie_index=getCookieIndex();
-        
-        // console.log("result is :"+cookie_data_array.toString()+"--- "+cookie_index);
-        // var index=cookie_data_array.length;
         document.cookie = "item"+cookie_index+"="+cart_data+";"+
                             expires+";path=/";  
          alert(item_name+" added to cart!");
@@ -54,6 +55,10 @@ $(document).ready(function(){
 
 
 
+    /**
+     * adds the tiifin to cart 
+     * in order to order more than 100 tiffins user need to contact with dealer
+     */
     $("button#mealPlan_cart").click(function(){        
         console.log("add to cart");
         var qty=$(this).parent().prev().val();
@@ -72,9 +77,6 @@ $(document).ready(function(){
         var item_name=sType+"_"+tiffinType;
         
         var price=$(this).parent().prev().prev().prev().prev().text();
-       // var price=$(this).parent().find(".price").text();
-    
-       // alert("item added !!!"+companyName);
         console.log("cname : "+companyName);
         console.log("itemName : "+item_name);
         console.log("qty : "+qty);
@@ -97,6 +99,9 @@ $(document).ready(function(){
     
         })
 
+        /**
+         * get index of last item so that other can be added after that item
+         */
         function getCookieIndex()
         {
             var cookie_index=0;

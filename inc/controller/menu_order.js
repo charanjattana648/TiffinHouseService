@@ -1,6 +1,7 @@
-$(document).ready(function(){
-   
-    
+/**
+ * set order no in input field
+ */
+$(document).ready(function(){     
     $('input[type="submit"]').click(function(){
         var oVal=$(this).prev().prev().val();
         $(this).prev().val(oVal);

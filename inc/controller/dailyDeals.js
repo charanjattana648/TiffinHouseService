@@ -2,7 +2,9 @@
 
 var slideIndex = 0;
 showSlides();
-
+/**
+ * slider to show images of new deals after 5 sec
+ */
 function showSlides() {
   var i;
   var slides = document.getElementsByClassName("today_deals_slides");

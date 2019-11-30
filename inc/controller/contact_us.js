@@ -1,3 +1,4 @@
+//validation for user email to send message
 $(document).ready(function () {
 
     $("button#sendBtn_cu").click(function () {

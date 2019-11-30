@@ -1,11 +1,12 @@
+/**
+ * item is removed on delete click icon from cart
+ */
 $(document).ready(function(){
     console.log("ready")
     $("i.fa").click(function(){
         var cname=$(this).attr("id");
-        alert("deleted "+cname)
-        // $.removeCookie(cname, { path: '/' });
+        alert("Removed Item from cart!");
        document.cookie=cname+"=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";       
-        // document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
          location.reload();
     })
 
@@ -13,6 +14,10 @@ $(document).ready(function(){
     var regexPostalCode=/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
     var regexCardNumber=/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/;
     
+    /**
+     * checks if user selected card
+     * if yes, than toggle the card inputs which are hidden intially
+     */
     if($(".paymentType").val()=="Card")
     {
         console.log("entered order jsssss");
@@ -30,12 +35,17 @@ $(document).ready(function(){
        
     })
 
+    /**
+     * calling validate_Data() function on form submission 
+     */
     $(document).on('submit','form#payment_form',function(){
         var x=validate_Data();
-      //  alert("Data is "+x);
         return  x;
      });
 
+     /**
+      * validate_Data() function valiadtes user entered data
+      */
     function validate_Data(){
         console.log("entered order jsfghjjhjhghhgssss");
     if (!regexEmail.test($("#email").val()))

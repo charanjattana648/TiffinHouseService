@@ -1,3 +1,6 @@
+/**
+ * toggle used on mouse enter to diplay curent company names that provied deals
+ */
 $(document).ready(function(){
     
     console.log("header ready");

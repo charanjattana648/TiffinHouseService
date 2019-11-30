@@ -16,7 +16,9 @@ var rad_offer=document.getElementById("onDiscount");
 
 
 
-//rad_regular.onselectionchange
+/**
+ *  validateDealerMenu() validation function
+ */
 function validateDealerMenu()
 {
     if(day.value=="")
@@ -43,6 +45,9 @@ function validateDealerMenu()
         throw "please add ingredients.";
     }
 }
+/**
+ * function to validate ingridents
+ */
 function add_Ingredient()
 {    
     if(ingredient.value=="")
@@ -56,6 +61,9 @@ function add_Ingredient()
     }    
 }
 
+/**
+ * function to validate item 
+ */
 function add_item(){
     try{
        validateDealerMenu();
@@ -73,11 +81,9 @@ btn_ingredient.onclick=function(){
 btn_item.onclick=function(){
     add_item();
 };
-// alert ("hello");
-// document.getElementById("a#edit_menu").onclick=function(){
-//     console.log("hello click click");  
-// }
-
+/**
+ * on edit click the data of row is send to form so dealer can apply CRUD operations
+ */
 $(document).ready(function(){
     console.log("hello jquery");
     $("a.edit_menu").click(function(){
@@ -85,35 +91,36 @@ $(document).ready(function(){
        $('tr.'+mId+' td').each(function() {
            if($(this).attr('id')=="menuId")
            {
-           // $("input#itemPrice").val($(this).html());
             menu_id.value=$(this).html();
            }else if($(this).attr('id')=="day")
            {
             $("select#day").val($(this).html()+":"+$(this).attr("class"));
-           // day.value=$(this).html()+":"+$(this).attr("class");;
            console.log($(this).html()+":"+$(this).attr("class"));
-           }else if($(this).attr('id')=="itemName")
+           }
+           else if($(this).attr('id')=="itemName")
            {
                $("input#itemName").val($(this).html());
                console.log("hello"+$(this).html());
-           // itemName.value=$(this).html();
-           }else if($(this).attr('id')=="itemPrice")
+           }
+           else if($(this).attr('id')=="itemPrice")
            {
             $("input#itemPrice").val($(this).html());
-            //itemPrice.value=$(this).html();
-           }else if($(this).attr('id')=="itemDetail")
+           }
+           else if($(this).attr('id')=="itemDetail")
            {
             $("input#itemDetail").val($(this).html());
-            //itemDetail.value=$(this).html();
-           }else if($(this).attr('id')=="ingredient")
+           }
+           else if($(this).attr('id')=="ingredient")
            {
             $("input#ingredient").val($(this).html());
-            //ingredient.value=$(this).html();
            }
         
     });
     })
 
+    /**
+     * togle html input elements on selection (hide or show)
+     */
     $("#onDiscount").change(function(){
         $("select#day").css("display","none");
         $("#add_ingredient").css("display","none");
@@ -121,6 +128,9 @@ $(document).ready(function(){
         $("label#ing_l").css("display","none");
 
     })
+    /**
+     * togle html input elements on selection (hide or show)
+     */
     $("#regular").change(function(){
         $("select#day").css("display","block");
         $("#add_ingredient").css("display","block");
