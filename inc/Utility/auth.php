@@ -112,4 +112,3 @@ public static function signIn_user($userEmail,$pass,$type)
 	}	
 }
 }
-?>

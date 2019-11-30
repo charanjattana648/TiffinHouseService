@@ -25,6 +25,7 @@ $aboutUs = $db::getAboutCompany("Admin");
 </div>
 <div id="company_message_outer">
 	<?php
+	/**This will show all the messages from dealers with their company name */
 	$aboutUs = $db::getAboutCompany();
 	foreach ($aboutUs as $about) {
 		if ($about->getCompanyName() != "Admin") {
@@ -37,9 +38,6 @@ $aboutUs = $db::getAboutCompany("Admin");
 	?>
 
 </div>
-
-
-
 <!--Footer-->
 <?php
 include("../views/footer.php")

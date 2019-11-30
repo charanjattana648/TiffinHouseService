@@ -1,5 +1,6 @@
 <?php
 /**
+ * ContactUs Class
 * getter setter for contactUs entity class with messageId,firstNmae,LastNmae,userEmail,message,dateTime and messageTo attributes.
 */
 class ContactUs{
@@ -77,5 +78,4 @@ class ContactUs{
         $this->messageTo=$messageTo;
     }
 }
-
 ?>

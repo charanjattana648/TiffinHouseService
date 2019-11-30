@@ -1,75 +1,85 @@
-<?php      
-ob_start();   
+<?php
+
+/**ob_start() function is used to remember the headers by buffering the output means that you can still manipulate the HTTP headers later in the code */
+ob_start();
 require_once("../requireFiles.php");
 require_once("../inc/controller/OrderCalculation.class.php");
 ?>
 
 
 <?php
-if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']=='true')
-{
-$count= count($_COOKIE);
-$found=false;
-$found_item=false;
-echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
-echo"<script src='../inc/controller/Order.js'></script>";
-$order=new Order();
-echo '<div class="order_outer_div"><div id="summary"><h1>Order Summary</h1>';
+/**get the data stored in cookie for cart and display in table as a cart.
+ * user will have the option to delete the item from cart
+ * total price per item and total tax along total amount will be calculated by OrderCalculation.class.
+ */
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 'true') {
+  $count = count($_COOKIE);
+  $found = false;
+  $found_item = false;
+  echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
+  echo "<script src='../inc/controller/Order.js'></script>";
+  $order = new Order();
+  echo '<div class="order_outer_div"><div id="summary"><h1>Order Summary</h1>';
 
-foreach($_COOKIE as $key=>$val)
-{
-    $pos=strpos($key,"item",0);
-    if($pos==0)
-    {
-        $index = (int) filter_var($key, FILTER_SANITIZE_NUMBER_INT);
-        $count+=$index;
-        $found_item=true;
+  foreach ($_COOKIE as $key => $val) {
+    $pos = strpos($key, "item", 0);
+    if ($pos == 0) {
+      $index = (int) filter_var($key, FILTER_SANITIZE_NUMBER_INT);
+      $count += $index;
+      $found_item = true;
     }
-}
-$index=0;
-while($index < $count)
-{
-  if(isset($_COOKIE["item".$index]) && $_COOKIE["item".$index]!="")
-    {
-        if($found==false)
-        {
-            echo"<table><tr><th>Name</th><th>Qty</th><th>Price</th><th>Total Price</th><th>Delete</th></tr>";
-        }
-        echo "<tr>";        
-        $cartItem=$_COOKIE["item".$index];      
-        $cartItem=json_decode($cartItem,true);
-        echo "<td>".$cartItem['itemName']."</td>";
-        echo "<td>".$cartItem['qty']."</td>";
-        echo "<td>".$cartItem['price']."</td>";
-        //$total_price="<script>calculatePrice(".$cartItem['qty'].",".($cartItem['price']).")</script>";
-        
-        $total_price=$order->calculatePrice($cartItem['qty'],substr($cartItem['price'],1));
-        echo "<td>$".$total_price."</td>";
-       echo "<td id='del'><i id='item".$index."' class='fa fa-trash' aria-hidden='true'></i></td></tr>";
-       $found=true;
-    }    
+  }
+  $index = 0;
+  /**
+   * displaying data in table
+   */
+  while ($index < $count) {
+    if (isset($_COOKIE["item" . $index]) && $_COOKIE["item" . $index] != "") {
+      if ($found == false) {
+        echo "<table><tr><th>Name</th><th>Qty</th><th>Price</th><th>Total Price</th><th>Delete</th></tr>";
+      }
+      echo "<tr>";
+      $cartItem = $_COOKIE["item" . $index];
+      $cartItem = json_decode($cartItem, true);
+      echo "<td>" . $cartItem['itemName'] . "</td>";
+      echo "<td>" . $cartItem['qty'] . "</td>";
+      echo "<td>" . $cartItem['price'] . "</td>";
+      //$total_price="<script>calculatePrice(".$cartItem['qty'].",".($cartItem['price']).")</script>";
+
+      $total_price = $order->calculatePrice($cartItem['qty'], substr($cartItem['price'], 1));
+      echo "<td>$" . $total_price . "</td>";
+      echo "<td id='del'><i id='item" . $index . "' class='fa fa-trash' aria-hidden='true'></i></td></tr>";
+      $found = true;
+    }
     $index++;
-}
-
-if($found==false){
+  }
+  /**
+   * check if cart is empty or not
+   * if not empty than will call OrderCalculation.class to do calculations for total tax and totalprice.
+   */
+  if ($found == false) {
     echo "Card is Empty";
-    $_SESSION['tax']=0;
-    $_SESSION['totalPrice']=0;
-}else{
-    echo "<tr><td>Total Tax</td><td>".$order->toatlQty()."</td><td colspan='2'>$".$order->calculateTax()."</td><td></td></tr>";
-    echo "<tr><td>Total Price</td><td>".$order->toatlQty()."</td><td colspan='2'>$".$order->calculateTotalPrice()."</td><td></td></tr>";
+    $_SESSION['tax'] = 0;
+    $_SESSION['totalPrice'] = 0;
+  } else {
+    echo "<tr><td>Total Tax</td><td>" . $order->toatlQty() . "</td><td colspan='2'>$" . $order->calculateTax() . "</td><td></td></tr>";
+    echo "<tr><td>Total Price</td><td>" . $order->toatlQty() . "</td><td colspan='2'>$" . $order->calculateTotalPrice() . "</td><td></td></tr>";
     echo "</table>";
-    $_SESSION['tax']=$order->calculateTax();
-    $_SESSION['totalPrice']=$order->calculateTotalPrice();
+    $_SESSION['tax'] = $order->calculateTax();
+    $_SESSION['totalPrice'] = $order->calculateTotalPrice();
+  }
+  echo '</div>';
 
-}
-echo '</div>';
-
-?>
+  ?>
 
 
-<?php
-echo '<div id="payment_details"><form method="POST" id="payment_form" action="OrderActions.php">
+  <?php
+    /**
+     * Order form user needs to provide the details like address,name payment method and order shipping method
+     * user can select cash or card
+     * if card is selected than user need to card details which are validated by regex
+     */
+    echo '<div id="payment_details"><form method="POST" id="payment_form" action="OrderActions.php">
 <div class="row">
 <div class="col-50">
   <h3>Billing Address</h3>
@@ -150,21 +160,20 @@ echo '<div id="payment_details"><form method="POST" id="payment_form" action="Or
    </div>
    <input type="submit" name="checkout" value="Continue to checkout" class="btn">
 </form>';
-    echo' </div>';
-     
-
-?>
+    echo ' </div>';
 
 
+    ?>
 
-<!--Footer-->
+
+
+  <!--Footer-->
 <?php
 
-include ("../views/footer.php");
-}
-else{
+  include("../views/footer.php");
+} else {
 
-    echo "<script>alert('Please SignIn to make Order or check items in cart!!!');
+  echo "<script>alert('Please SignIn to make Order or check items in cart!!!');
     window.location.replace('http://localhost/index.php');
     </script>";
 }

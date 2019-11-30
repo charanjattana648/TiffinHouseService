@@ -411,16 +411,15 @@ section.righttext p{
 			margin-top: 10px;
 			box-sizing: border-box;
 		}
-		.footer_top{
-		   margin-top: 15px;
-		}
+		
 		
 		/**about us*/
 		
 		.dealers_div
 	{
 		width: 100%;
-		height: 400px;	
+        height: auto;
+        min-height: 400px;
 		margin-top:40px;		
 	}
 	.dealers_div .dealer_article
@@ -497,7 +496,8 @@ section.righttext p{
 				
 				.map_div{
 					padding: 10px;
-					float: right;
+                    float: right;
+                    width: 47%;
 					margin-right: 10px;
 					margin-top: 10px;
 					box-sizing: border-box;
@@ -743,6 +743,7 @@ div#company_message_outer {
     display: inline-block;
     width: 33%;
     padding: 20px 15px;
+    vertical-align: top;
 }
 .footer_top h3 {
     margin: 0;
@@ -808,7 +809,7 @@ textarea#cMessage {
 }
 .contact_form button {
     margin: 0 40px 0 0px;
-    width: 43%;
+    width: 42%;
     display: inline-block;
     float: left;
 }

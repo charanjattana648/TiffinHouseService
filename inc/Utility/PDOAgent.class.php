@@ -118,6 +118,3 @@ public function rowsAffected():int
 
 
 }
-
-
-?>

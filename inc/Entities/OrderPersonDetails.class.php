@@ -1,5 +1,6 @@
 <?php
 /**
+ * OrderPersonDetails class
 * getter setter for OrderPersonDetails entity class
 * with orderId	name,emailaddress, city, state, zip,shippingOption,	paymentType,tax,totalPrice,	paymentStatus attributes
 * details about order of user

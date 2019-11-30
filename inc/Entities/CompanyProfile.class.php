@@ -1,6 +1,8 @@
 <?php
-//getter setter for company profile entity class with companyName	phoneNumber	email	address	city	Province	country	postalCode	companyImage attributes
-
+/**
+ * CompanyProfile class
+ * getter setter for company profile entity class with companyName	phoneNumber	email	address	city	Province	country	postalCode	companyImage attributes
+*/
 class CompanyProfile{
     private $companyName;
     private	$phoneNumber;
@@ -14,6 +16,9 @@ class CompanyProfile{
 
     public function __construct(){
     }
+    /**
+     * set the data which is passed to database latter.
+     */
 
     public function setData($companyName,$phoneNumber,$email,$address,$city,$province,$country,$postalCode,$companyImage="")
     {
@@ -27,8 +32,9 @@ class CompanyProfile{
         $this->postalCode=$postalCode;
         $this->companyImage=$companyImage;
     }
-   
-    //
+   /**
+    * gettter and setters
+    */
     public function getCompanyName():string
     {
         return $this->companyName;

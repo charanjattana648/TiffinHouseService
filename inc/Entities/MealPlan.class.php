@@ -1,68 +1,75 @@
 <?php
+
 /**
-* getter setter for MealPlan entity class with  $companyName,$tiffinType,$price,$tiffinDescription,$subscriptionType attributes
-*/
-class MealPlan{
+ * MealPlan class
+ * getter setter for MealPlan entity class with  $companyName,$tiffinType,$price,$tiffinDescription,$subscriptionType attributes
+ */
+class MealPlan
+{
     private $companyName;
     private $tiffinType;
     private $price;
     private $tiffinDescription;
     private $subscriptionType;
 
-    public function __construct(){
-
+    /**
+     * constructor for mealPLan class
+     */
+    public function __construct()
+    { }
+    /**
+     * sets added which is latter passed to database
+     */
+    public function setData($companyName, $tiffinType, $price, $tiffinDescription, $subscriptionType)
+    {
+        $this->companyName = $companyName;
+        $this->tiffinType = $tiffinType;
+        $this->price = $price;
+        $this->tiffinDescription = $tiffinDescription;
+        $this->subscriptionType = $subscriptionType;
     }
-    public function setData($companyName,$tiffinType,$price,$tiffinDescription,$subscriptionType){
-        $this->companyName=$companyName;
-        $this->tiffinType=$tiffinType;
-        $this->price=$price;
-        $this->tiffinDescription=$tiffinDescription;
-        $this->subscriptionType=$subscriptionType;
-    }
-/**MealPlan getters */
-    public function getCompanyName():string 
+    /**MealPlan getters */
+    public function getCompanyName(): string
     {
         return $this->companyName;
     }
-    public function getTiffinType():string 
+    public function getTiffinType(): string
     {
         return $this->tiffinType;
     }
-    public function getPrice() 
+    public function getPrice()
     {
         return $this->price;
     }
-    public function getTiffinDescription():string 
+    public function getTiffinDescription(): string
     {
         return $this->tiffinDescription;
     }
-    public function getSubscriptionType():string 
+    public function getSubscriptionType(): string
     {
         return $this->subscriptionType;
-    }  
-     /**MealPlan setters  */
+    }
+    /**MealPlan setters  */
 
-    public function setCompanyName(string $companyName) 
+    public function setCompanyName(string $companyName)
     {
-        $this->companyName=$companyName;
+        $this->companyName = $companyName;
     }
     public function setTiffinType(string $tiffinType)
     {
-        $this->tiffinType=$tiffinType;
+        $this->tiffinType = $tiffinType;
     }
-    public function setPrice($price) 
+    public function setPrice($price)
     {
-        $this->price=$price;
+        $this->price = $price;
     }
-    public function setTiffinDescription(string $tiffinDescription) 
+    public function setTiffinDescription(string $tiffinDescription)
     {
-        $this->tiffinDescription=$tiffinDescription;
+        $this->tiffinDescription = $tiffinDescription;
     }
-    public function setSubscriptionType(string $subscriptionType) 
+    public function setSubscriptionType(string $subscriptionType)
     {
-        $this->subscriptionType=$subscriptionType;
+        $this->subscriptionType = $subscriptionType;
     }
-
 }
-
 ?>

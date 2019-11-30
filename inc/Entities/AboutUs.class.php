@@ -1,29 +1,31 @@
 <?php
+
 /**
-*  $companyName name of the company 
-*  $aboutCompany description of company
-*/
-class AboutUs{
+ *  $companyName name of the company 
+ *  $aboutCompany description of company
+ */
+class AboutUs
+{
     private $companyName;
-    private	$aboutCompany;
+    private    $aboutCompany;
 
-    public function __construct(){
-    }
+    public function __construct()
+    { }
 
-    public function setData($companyName,$aboutCompany)
+    public function setData($companyName, $aboutCompany)
     {
-        $this->companyName=$companyName;
-        $this->aboutCompany=$aboutCompany;
+        $this->companyName = $companyName;
+        $this->aboutCompany = $aboutCompany;
     }
-   
+
     //
-    public function getCompanyName():string
+    public function getCompanyName(): string
     {
         return $this->companyName;
     }
-    public function getAboutCompany():string
+    public function getAboutCompany(): string
     {
         return $this->aboutCompany;
     }
 }
-    ?>
+?>

@@ -1,5 +1,6 @@
 <?php
 /**
+ * Menu class
 * getter setter for menu entity class 
 * detailed information about menu with $itemName,$itemPrice,$itemImage,$itemDetail,$ingredient,string $day,$dayId,$companyName,$itemId attributes.
 */
