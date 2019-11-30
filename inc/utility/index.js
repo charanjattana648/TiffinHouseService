@@ -1,3 +1,4 @@
+//checks previouly added item
 $(document).ready(function () {
 
     var cookie_index = 0;
@@ -12,7 +13,7 @@ $(document).ready(function () {
         }
     }
 
-
+// adds item to cart from slider at index page
     console.log("ready ")
     $("button.do_item").click(function () {
         var itemObj = {};
